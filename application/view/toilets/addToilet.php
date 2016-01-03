@@ -3,7 +3,7 @@
 
 <form action="/add" method="post">
 <dl><dt><label for="buildingDropdown">Location</label></dt>
-<dd><select name="building_id" id="buildingDropdown">
+<dd><select name="building_id" id="buildingDropdown" required>
   <option>Building&hellip;</option><?php
   foreach ($buildings as $building) { ?>
     <option value="<?php echo $building->id; ?>"<?php
@@ -17,8 +17,8 @@
 ?></select>
 
 <label> &gt;
-<select name="floor_id" id="floorDropdown">
-  <option value="">Floor&hellip;</option>
+<select name="floor_id" id="floorDropdown" required>
+  <option>Floor&hellip;</option>
   <?php if ($floors != null) {
     foreach ($floors as $floor) { ?>
       <option value="<?php echo $floor->id; ?>"<?php
@@ -38,7 +38,7 @@
 
 
 <dt><label for="name">Name</label></dt>
-<dd><input type="text" name="name"<?php if(isset($_POST['name'])) {echo ' value="' . Helper::sanitizeHTML($_POST['name']) . '"';} ?> id="name" />
+<dd><input type="text" name="name"<?php if(isset($_POST['name'])) {echo ' value="' . Helper::sanitizeHTML($_POST['name']) . '"';} ?> id="name" required />
   <span class="minor">e.g. &ldquo;Across from room 223&rdquo; or &ldquo;Near the stairs&rdquo;</span>
   <?php
     if (isset($error['name'])) { ?>
@@ -50,11 +50,11 @@
 
 <dl>
 	<dt>Gender</dt>
-<dd><label><input type="radio" name="gender" id="male" value="male"<?php if(isset($_POST['gender']) && $_POST['gender'] == 'male') {echo ' checked';} ?>> Male</label>
+<dd><label><input type="radio" name="gender" id="male" value="male"<?php if(isset($_POST['gender']) && $_POST['gender'] == 'male') {echo ' checked';} ?> required> Male</label>
 
-<dd><label><input type="radio" name="gender" id="female" value="female"<?php if(isset($_POST['gender']) && $_POST['gender'] == 'female') {echo ' checked';} ?>> Female</label></dd>
+<dd><label><input type="radio" name="gender" id="female" value="female"<?php if(isset($_POST['gender']) && $_POST['gender'] == 'female') {echo ' checked';} ?> required> Female</label></dd>
 
-<dd><label><input type="radio" name="gender" id="other" value="other"<?php if(isset($_POST['gender']) && $_POST['gender'] == 'other') {echo ' checked';} ?>> Any</label>
+<dd><label><input type="radio" name="gender" id="other" value="other"<?php if(isset($_POST['gender']) && $_POST['gender'] == 'other') {echo ' checked';} ?> required> Any</label>
   <span class="minor">(Some restrooms are not gender-specific.)</span>
 </dd>
 <?php
@@ -65,13 +65,11 @@
 </dl>
 
 
-Number of&hellip;
+Number of&hellip; <span class="minor">(optional)</span>
 <dl class="numbers">
 <dt><label for="sinks">Sinks</label></dt> <dd><input type="number" min="0" step="1" id="sinks" name="sinks"<?php if(isset($_POST['sinks'])) {echo ' value="' . Helper::sanitizeHTML($_POST['sinks']) . '"';} ?> /></label>
   <?php if (isset($error['sink'])) { ?>
     <span class="error"><?php echo $error['sink']; ?></span>
-  <?php } else { ?>
-    <span class="minor">(Leave these fields blank if you don&rsquo;t know)</span>
   <?php } ?>
 </dd>
 
@@ -96,7 +94,7 @@ Number of&hellip;
 
 <dl>
 <dt><label for="comments">Special Comments</label></dt>
-	<dd><textarea name="comments" id="comments" placeholder="Remember you can review this restroom later."><?php
+	<dd><textarea name="comments" id="comments" placeholder="Optional. Remember you can review this restroom later."><?php
 		if(isset($_POST['comments'])) {
 			echo Helper::sanitizeHTML($_POST['comments']);
 		}

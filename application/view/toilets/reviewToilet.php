@@ -18,7 +18,7 @@
         <label class="abstain">
           <input type="radio" name="<?php echo $category[1]; ?>" value="" <?php
 
-          if ((isset($_POST[$category[1]]) && $_POST[$category[1]] == null) || // if a value was posted
+          if ((isset($_POST['comments']) && !isset($_POST[$category[1]])) || // if the form was posted but nothing set
             ($current_review && $current_review->$category[1] == null)) { // if updating a former review
             echo 'checked ';
           }
@@ -35,7 +35,11 @@
           <?php
           if ((isset($_POST[$category[1]]) && $_POST[$category[1]] == $i) || // if a value was posted
             ($current_review && $current_review->$category[1] == $i)) {// if updating a former review
-            echo 'checked ';
+            echo ' checked ';
+          }
+
+          if ($category[1] == "overall") {
+            echo ' required ';
           }
         ?>
         /><label class="star" for="r-<?php echo $category[1]; ?>-<?php echo $i; ?>"><?php echo $i; ?></label>
@@ -59,7 +63,7 @@
   <dl>
     <dt><label for="comments">Comments</label></dt>
     <dd>
-      <textarea name="comments" id="comments"><?php
+      <textarea name="comments" id="comments" required placeholder="Required"><?php
   		if(isset($_POST['comments'])) {
   			echo Helper::sanitizeHTML($_POST['comments']);
   		} elseif ($current_review) {
