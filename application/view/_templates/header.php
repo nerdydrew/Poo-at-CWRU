@@ -41,7 +41,7 @@
 	<title><?php if (isset($title) && $title != null && $title != "")
 	echo $title . ' &mdash; ';
 
-	?>Poo @ CWRU</title>
+	?>Poo at CWRU</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
@@ -55,7 +55,7 @@
 	if (Helper::isLoggedIn()) {
 		echo 'class="double" ';
 	} ?>><nav>
-		<h1><a href="<?php echo URL; ?>">Poo @ CWRU</a></h1>
+		<h1><a href="<?php echo URL; ?>">Poo at CWRU</a></h1>
 
 		<ul>
 			<li><a href="<?php echo URL; ?>">Find</a></li>

@@ -1,7 +1,7 @@
 <section>
 <h1 class="headline">Helping you find restrooms <span class="subtitle">that don&rsquo;t stink beyond the possible</span></h1>
 
-<p>Have you ever wanted to keep track of the best and worst restrooms at Case Western Reserve University? You probably haven&rsquo;t, but now you can. </p>
+<p>Have you ever wanted to keep track of the best and worst restrooms at Case Western Reserve University? Probably not, but now you can. </p>
 
 <div id="geolocation"><p class="warning">If you can read this, your browser may not support JavaScript.</p></div>
 </section>

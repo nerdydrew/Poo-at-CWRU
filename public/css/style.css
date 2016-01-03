@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Titillium+Web:400,700);
 
 html,textarea{font:1em/1.618 "Titillium Web","Helvetica Neue","Arial Unicode MS",Arial,sans-serif}
-html{background:#0A304E;color:#3E3F41;font-size:1.125em}
+html{background:#ECECEC;color:#3E3F41;font-size:1.125em}
 body{background:#FFF;margin:0;padding:0}
 
 h1,h2,h3,h4,h5,h6{font-weight:400}
@@ -12,11 +12,11 @@ a:hover{text-decoration:underline}
 
 p,section{margin:.809em 0;padding:0}
 
-header,footer{background:#0A304E;color:#AAA}
-header a,footer a{color:#FFF;text-decoration:none;}
-header a:hover,footer a:hover{text-decoration:underline}
-header nav,footer p{margin:0 auto;max-width:35em;padding:2em 1em;overflow:auto}
-header h1{margin:0;float:left}
+header{background:#0A304E;color:#AAA}
+header a{color:#FFF;text-decoration:none;}
+header a:hover{text-decoration:underline}
+header nav{margin:0 auto;max-width:35em;padding:2em 1em;overflow:auto}
+header h1{margin:0;float:left;font-variant:small-caps}
 header nav ul{margin:0;padding:.4em 0 0;list-style:none;text-align:right;text-transform:lowercase;font-size:1.125em;}
 header nav ul li{display:inline;margin:0 .5em}
 header nav ul li a{padding:.25em}
@@ -31,8 +31,8 @@ header .selected{background:#0A7;-webkit-border-radius:1em;-moz-border-radius:1e
 header .male.selected{background:skyblue;color:#0A304E}
 header .female.selected{background:pink;color:#0A304E}
 
-h1.headline{text-align:center;font-size:2em;font-weight:700;line-height:1.2}
-h1.headline .subtitle{display:block;font-size:.75em}
+h1.headline{text-align:center;font-size:2em;font-weight:700;line-height:1.2;color:#0A304E}
+h1.headline .subtitle{display:block;font-size:.78em;font-weight:400;color:#626262}
 
 article{max-width:35em;margin:0 auto;padding:1em;overflow:hidden}
 
@@ -45,15 +45,15 @@ fieldset{border:0;margin:.809em 0;padding:0}
 input[type="number"]{width:3em}
 textarea{width:95%;height:6em}
 
-blockquote{border-left:.25em solid #A8AAAE;margin:0 0 1.618em 1em;padding-left:1em}
-blockquote.yourComment{border-color:goldenrod}
-blockquote p{margin-bottom:0}
+blockquote{background:#F2F2F2;margin:0 0 1.618em 0;padding:1em;border-radius:.25em}
+blockquote.yourComment{border-left:.25em solid goldenrod}
+blockquote p{margin:0}
 blockquote cite{color:#67696C;text-align:right;display:block}
 blockquote cite:before{content:"–"}
 blockquote.yourComment cite:before{content:"–you on "}
 
 table{width:100%;border-collapse:collapse}
-thead th{font-weight:400;background:#0A304E;color:#FFF;font-size:.9em;text-align:left;padding:0 .56em}
+thead th{font-weight:400;background:#0A304E;color:#FFF;font-size:.9em;text-align:left;padding:.25em .56em}
 tbody tr{background:#EEE;border-bottom:.125em solid #FFF;}
 tbody tr:hover{background:#DDD}
 tbody a{display:block;padding:.125em .5em}
@@ -65,7 +65,7 @@ a.delete{color:#C23}
 a.delete:hover{color:#FFF;background:#C23}
 td{margin:0;padding:0}
 
-.info,.warning{padding:.5em 1em;border-radius:.5em}
+.info,.warning{padding:.5em 1em;border-radius:.25em}
 .info{background:#DFE}.warning{background:#FFA}
 .error{color:#C23;font-weight:700}
 .minor{color:#67696C;font-size:.85em}
@@ -75,9 +75,8 @@ td{margin:0;padding:0}
 span.male{color:blue}
 span.female{color:hotpink}
 
-footer{padding:0 1em;clear:both}
-footer a{text-decoration:underline}
-footer a:hover{color:#CCC}
+footer{padding:0 1em;clear:both;background:#ECECEC;border-top:5px solid #F1F1F1}
+footer p{margin:0 auto;max-width:35em;padding:2em 1em;overflow:auto}
 
 #geolocation p.warning,#geolocation p.loading{margin:3em 0;text-align:center;}
 

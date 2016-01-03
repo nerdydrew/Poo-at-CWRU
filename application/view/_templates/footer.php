@@ -1,7 +1,7 @@
 </article>
 
 <footer>
-	<p>Brought to you by <a href="http://callmedrew.com">Drew Mitchell</a>. Any wrong info? Email me (<a href="mailto:atm62@case.edu">atm62</a>).</p>
+	<p>Brought to you by <a href="http://callmedrew.com">Drew Mitchell</a>. <a href="mailto:atm62@case.edu">Email me</a> | <a href="https://github.com/nerdydrew/Poo-at-CWRU">Contribute on GitHub</a></p>
 </footer>
 
 

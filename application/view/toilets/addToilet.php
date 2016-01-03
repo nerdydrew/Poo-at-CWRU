@@ -96,7 +96,7 @@ Number of&hellip;
 
 <dl>
 <dt><label for="comments">Special Comments</label></dt>
-	<dd><textarea name="comments" id="comments" placeholder="You will be able to review this restroom later."><?php
+	<dd><textarea name="comments" id="comments" placeholder="Remember you can review this restroom later."><?php
 		if(isset($_POST['comments'])) {
 			echo Helper::sanitizeHTML($_POST['comments']);
 		}
