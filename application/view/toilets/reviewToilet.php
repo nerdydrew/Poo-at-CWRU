@@ -14,16 +14,17 @@
     foreach (Toilets::$rating_categories as $category) { ?>
       <dt><?php echo $category[0]; ?></dt>
       <dd class="rating">
-      <label class="abstain">
-        <input type="radio" name="<?php echo $category[1]; ?>" value="" <?php
+      <?php if ($category[1] != "overall") { ?>
+        <label class="abstain">
+          <input type="radio" name="<?php echo $category[1]; ?>" value="" <?php
 
-        if ((isset($_POST[$category[1]]) && $_POST[$category[1]] == null) || // if a value was posted
-          ($current_review && $current_review->$category[1] == null)) { // if updating a former review
-          echo 'checked ';
-        }
-        ?>/> N/A
-      </label>
-      <?php
+          if ((isset($_POST[$category[1]]) && $_POST[$category[1]] == null) || // if a value was posted
+            ($current_review && $current_review->$category[1] == null)) { // if updating a former review
+            echo 'checked ';
+          }
+          ?>/> N/A
+        </label>
+      <?php }
 
 
       for ($i=5; $i>=1; $i--) { ?>
