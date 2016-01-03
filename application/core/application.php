@@ -160,7 +160,7 @@ class Application {
 
         if (isset($url[0]) || $this->url_action != null) {
           // The first parameter corresponds with a building.
-          $this->url_controller = "Toilets";
+          $this->url_controller = "toilets";
 
           if ($this->url_action == null) {
             if (isset($url[2])) {
