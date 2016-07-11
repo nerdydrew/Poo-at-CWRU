@@ -31,7 +31,7 @@ header .selected{background:#0A7;-webkit-border-radius:1em;-moz-border-radius:1e
 header .male.selected{background:skyblue;color:#0A304E}
 header .female.selected{background:pink;color:#0A304E}
 
-h1.headline{text-align:center;font-size:2em;font-weight:700;line-height:1.2;color:#0A304E}
+h1.headline{text-align:center;font-size:2.5em;font-weight:700;line-height:1.2;color:#0A304E}
 h1.headline .subtitle{display:block;font-size:.78em;font-weight:400;color:#626262}
 
 article{max-width:35em;margin:0 auto;padding:1em;overflow:hidden}
@@ -106,6 +106,9 @@ p.loading{padding-bottom:36px;background:url(../img/loading.gif) no-repeat botto
 table .stars{font-size:inherit;line-height:inherit}
 
 
+@media (max-width:36em){
+	h1.headline{font-size:7vw}
+}
 
 @media (max-width:35em){
 	.half{margin-right:0;float:none;width:auto}
@@ -114,12 +117,7 @@ table .stars{font-size:inherit;line-height:inherit}
 @media (max-width:30em) {
 	html{font-size:1em}
 	.optional{text-indent:-9999px;overflow:hidden}
-	h1.headline{font-size:1.5em}
 	.stars,.rating:not(:checked) > label.star:before{font-size:inherit;line-height:inherit}
-}
-
-@media (max-width:25em) {
-	h1.headline{font-size:1.25em}
 }
 
 @media (max-width:20em) {
