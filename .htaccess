@@ -4,5 +4,6 @@ RewriteEngine on
 RewriteRule ^(.*) public/$1
 
 # Force redirect to https
+RewriteCond %{HTTP_HOST} ^(www\.)?pooatcwru\.com$ [NC]
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
