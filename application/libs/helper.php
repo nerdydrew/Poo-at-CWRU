@@ -149,8 +149,12 @@ class Helper {
 	}
 
 	public static function ordinal($x) {
-		$nf = new NumberFormatter('en_US', NumberFormatter::ORDINAL);
-		return $nf->format($x);
+		$ordinals = array('th','st','nd','rd','th','th','th','th','th','th');
+		if (($x%100) >= 11 && ($x%100) <= 13) {
+			return $x . 'th';
+		} else {
+			return $x . $ordinals[$x % 10];
+		}
 	}
 
 	// returns a string stating the distance away.
