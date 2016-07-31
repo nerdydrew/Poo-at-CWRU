@@ -76,7 +76,7 @@ span.male{color:blue}
 span.female{color:hotpink}
 
 footer{padding:0 1em;clear:both;background:#ECECEC;border-top:5px solid #F1F1F1}
-footer p{margin:0 auto;max-width:35em;padding:2em 1em;overflow:auto}
+footer p{margin:0 auto;max-width:35em;padding:2em 0;overflow:auto}
 
 #geolocation p.warning,#geolocation p.loading{margin:3em 0;text-align:center;}
 
