@@ -36,7 +36,7 @@ function errorHandler(error) {
 	if (error.code == 1)
 		var message = "<p class=\"warning\">If you don&rsquo;t let us see your location, we can&rsquo;t find a nearby toilet!</p>";
 	else {
-		var message = "<p class=\"warning\">There was a problem finding your location.</p";
+		var message = "<p class=\"warning\">There was a problem finding your location.</p>";
 	}
 
 	document.getElementById("geolocation").innerHTML=message;
