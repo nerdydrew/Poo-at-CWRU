@@ -1,10 +1,18 @@
 </article>
 
 <footer>
-	<p>Brought to you by <a href="http://callmedrew.com">Drew Mitchell</a>. <a href="mailto:atm62@case.edu">Email me</a> | <a href="https://github.com/nerdydrew/Poo-at-CWRU">Contribute on GitHub</a></p>
+	<section>
+		<div class="left">
+			<p>Shine on, forever, Case Western Reserve.</p>
+		</div>
+		<div class="right">
+			<ul>
+				<li><a href="mailto:atm62@case.edu">Contact</a></li>
+				<li><a href="https://github.com/nerdydrew/Poo-at-CWRU">GitHub</a></li>
+			</ul>
+		</div>
+	</section>
 </footer>
-
-
 
 </body>
 </html>

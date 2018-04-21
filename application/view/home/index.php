@@ -8,7 +8,7 @@
 
 <p>Or, select any building from the dropdowns below:</p>
 
-<section class="half">
+<section class="left">
   <select onchange="if (this.value) window.location.href=this.value" id="northside">
   <option value="" selected>Buildings north of Euclid&hellip;</option>
   <?php
@@ -18,7 +18,7 @@
   </select>
 </section>
 
-<section class="half">
+<section class="right">
   <select onchange="if (this.value) window.location.href=this.value" id="southside">
   <option value="" selected>Buildings south of Euclid&hellip;</option>
   <?php

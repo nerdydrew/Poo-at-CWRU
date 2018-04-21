@@ -14,7 +14,7 @@ if ($user_has_reviewed) { ?>
 <?php } ?>
 
 
-<section class="half"><dl>
+<section class="left"><dl>
 	<dt>Cleanliness</dt> <dd><?php echo Helper::ratingStars($toilet->cleanliness); ?></dd>
 	<dt>Location</dt> <dd><?php echo Helper::ratingStars($toilet->location); ?></dd>
 	<dt>WiFi</dt> <dd><?php echo Helper::ratingStars($toilet->wifi); ?></dd>
@@ -25,7 +25,7 @@ if ($user_has_reviewed) { ?>
 </dl></section>
 
 
-<section class="half"><dl>
+<section class="right"><dl>
 	<dt>Gender</dt><dd><?php echo Helper::gender($toilet->gender); ?></dd>
 	<dt>Sinks</dt><dd><?php echo ($toilet->sinks === null ? '?' : $toilet->sinks); ?></dd>
 	<?php if ($toilet->gender == 'male') { ?>

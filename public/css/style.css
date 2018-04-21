@@ -1,7 +1,7 @@
 @import url(//fonts.googleapis.com/css?family=Titillium+Web:400,700);
 
 html,textarea{font:1em/1.618 "Titillium Web","Helvetica Neue","Arial Unicode MS",Arial,sans-serif}
-html{background:#ECECEC;color:#3E3F41;font-size:1.125em}
+html{background:#D7D7D7;color:#3E3F41;font-size:1.125em}
 body{background:#FFF;margin:0;padding:0}
 
 h1,h2,h3,h4,h5,h6{font-weight:400}
@@ -34,7 +34,7 @@ header .female.selected{background:pink;color:#0A304E}
 h1.headline{text-align:center;font-size:2.5em;font-weight:700;line-height:1.2;color:#0A304E}
 h1.headline .subtitle{display:block;font-size:.78em;font-weight:400;color:#626262}
 
-article{max-width:35em;margin:0 auto;padding:1em;overflow:hidden}
+article,footer section{max-width:35em;margin:0 auto;padding:1em;overflow:hidden}
 
 dl{overflow:hidden}
 dt{clear:both;float:left;width:6em}
@@ -71,12 +71,16 @@ td{margin:0;padding:0}
 .minor{color:#67696C;font-size:.85em}
 .numbers{margin-top:0}
 .numbers input{width:3em}
-.half{float:left;width:47%;margin:0 2% 0 0}
+.left{float:left;width:45%;margin:0;padding:0}
+.right{float:right;width:50%;margin:0;padding:0}
 span.male{color:blue}
 span.female{color:hotpink}
 
-footer{padding:0 1em;clear:both;background:#ECECEC;border-top:5px solid #F1F1F1}
-footer p{margin:0 auto;max-width:35em;padding:2em 0;overflow:auto}
+footer{padding: 1em;clear:both;background:#D7D7D7;border-top:5px solid #ECECEC;color:#383838}
+footer p,footer ul{font-size:.875em}
+footer ul{margin:0;padding:0;list-style:none}
+footer ul a{display:block;padding:12px;text-decoration:none;color:#383838;border-left:1px solid #F5F5F5;transition:all 0.2s ease 0s}
+footer ul a:hover{background:#FFF;border-left-color:#383838;text-decoration:none}
 
 #geolocation p.warning,#geolocation p.loading{margin:3em 0;text-align:center;}
 
@@ -110,8 +114,8 @@ table .stars{font-size:inherit;line-height:inherit}
 	h1.headline{font-size:7vw}
 }
 
-@media (max-width:35em){
-	.half{margin-right:0;float:none;width:auto}
+@media (max-width:32em){
+	.left,.right{margin-right:0;float:none;width:auto}
 }
 
 @media (max-width:30em) {
