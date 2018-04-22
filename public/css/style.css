@@ -13,10 +13,11 @@ a:hover{text-decoration:underline}
 p,section{margin:.809em 0;padding:0}
 
 header{background:#0A304E;color:#AAA}
-header a{color:#FFF;text-decoration:none;}
-header a:hover{text-decoration:underline}
+header a{color:#C6D4E3;text-decoration:none}
+header a:hover{color:#FFF;text-decoration:none}
 header nav{margin:0 auto;max-width:35em;padding:2em 1em;overflow:auto}
 header h1{margin:0;float:left;font-variant:small-caps}
+header img{height:1.5em;width:auto;padding-right:.5em;vertical-align:text-bottom}
 header nav ul{margin:0;padding:.4em 0 0;list-style:none;text-align:right;text-transform:lowercase;font-size:1.125em;}
 header nav ul li{display:inline;margin:0 .5em}
 header nav ul li a{padding:.25em}
@@ -27,7 +28,7 @@ header.double h1{margin-top:.75em}
 header.double a{padding-top:0;padding-bottom:0}
 
 header .genders{display:block}
-header .selected{background:#0A7;-webkit-border-radius:1em;-moz-border-radius:1em;border-radius:1em}
+header .selected{background:#0A7;-webkit-border-radius:1em;-moz-border-radius:1em;border-radius:1em;color:#FFF}
 header .male.selected{background:skyblue;color:#0A304E}
 header .female.selected{background:pink;color:#0A304E}
 
@@ -124,7 +125,7 @@ table .stars{font-size:inherit;line-height:inherit}
 	.stars,.rating:not(:checked) > label.star:before{font-size:inherit;line-height:inherit}
 }
 
-@media (max-width:20em) {
+@media (max-width:24em) {
 	header h1,header nav ul{float:none;text-align:center}
 	table .stars{overflow:hidden;text-indent:-9999px;display:block;width:1.5em;overflow:hidden;position:relative}
 	table .stars:after{content:attr(data-label);position:absolute;top:0;left:9999px}
