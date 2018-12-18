@@ -13,3 +13,136 @@
  *= require_tree .
  *= require_self
  */
+
+@import url(//fonts.googleapis.com/css?family=Titillium+Web:400,700);
+
+html,textarea{font:1em/1.618 "Titillium Web","Helvetica Neue","Arial Unicode MS",Arial,sans-serif}
+html{background:#D7D7D7;color:#3E3F41;font-size:1.125em}
+body{background:#FFF;margin:0;padding:0}
+
+h1,h2,h3,h4,h5,h6{font-weight:400}
+h1{font-size:1.5em}
+h2{font-size:1.125em;font-weight:700}
+a{color:#1368AB;text-decoration:none}
+a:hover{text-decoration:underline}
+
+p,section{margin:.809em 0;padding:0}
+
+header{background:#0A304E;color:#AAA}
+header a{color:#C6D4E3;text-decoration:none}
+header a:hover{color:#FFF;text-decoration:none}
+header nav{margin:0 auto;max-width:35em;padding:2em 1em;overflow:auto}
+header h1{margin:0;float:left;font-variant:small-caps}
+header img{height:1.5em;width:auto;padding-right:.5em;vertical-align:text-bottom}
+header nav ul{margin:0;padding:.4em 0 0;list-style:none;text-align:right;text-transform:lowercase;font-size:1.125em;}
+header nav ul li{display:inline;margin:0 .5em}
+header nav ul li a{padding:.25em}
+
+header.double nav ul{padding-top:0;line-height:2}
+header.double nav{padding:1em}
+header.double h1{margin-top:.75em}
+header.double a{padding-top:0;padding-bottom:0}
+
+header .genders{display:block}
+header .selected{background:#0A7;-webkit-border-radius:1em;-moz-border-radius:1em;border-radius:1em;color:#FFF}
+header .male.selected{background:skyblue;color:#0A304E}
+header .female.selected{background:pink;color:#0A304E}
+
+h1.headline{text-align:center;font-size:2.5em;font-weight:700;line-height:1.2;color:#0A304E}
+h1.headline .subtitle{display:block;font-size:.78em;font-weight:400;color:#626262}
+
+article,footer section{max-width:35em;margin:0 auto;padding:1em;overflow:hidden}
+
+dl{overflow:hidden}
+dt{clear:both;float:left;width:6em}
+dt:after{content:":"}
+dd{margin-left:6.5em}
+
+fieldset{border:0;margin:.809em 0;padding:0}
+input[type="number"]{width:3em}
+textarea{width:95%;height:6em}
+
+blockquote{background:#F2F2F2;margin:0 0 1.618em 0;padding:1em;border-radius:.25em}
+blockquote.yourComment{border-left:.25em solid goldenrod}
+blockquote p{margin:0}
+blockquote cite{color:#67696C;text-align:right;display:block}
+blockquote cite:before{content:"\2013"}
+blockquote.yourComment cite:before{content:"\2013you on "}
+
+table{width:100%;border-collapse:collapse}
+thead th{font-weight:400;background:#0A304E;color:#FFF;font-size:.9em;text-align:left;padding:.25em .56em}
+tbody tr{background:#EEE;border-bottom:.125em solid #FFF;}
+tbody tr:hover{background:#DDD}
+tbody a{display:block;padding:.125em .5em}
+tbody a:hover{text-decoration:none}
+table .verify,table .delete{text-align:center}
+a.verify{color:#0A7}
+a.verify:hover{color:#FFF;background:#0A7}
+a.delete{color:#C23}
+a.delete:hover{color:#FFF;background:#C23}
+td{margin:0;padding:0}
+
+.info,.warning{padding:.5em 1em;border-radius:.25em}
+.info{background:#DFE}.warning{background:#FFA}
+.error{color:#C23;font-weight:700}
+.minor{color:#67696C;font-size:.85em}
+.numbers{margin-top:0}
+.numbers input{width:3em}
+.left{float:left;width:45%;margin:0;padding:0}
+.right{float:right;width:50%;margin:0;padding:0}
+span.male{color:blue}
+span.female{color:hotpink}
+
+footer{padding: 1em;clear:both;background:#D7D7D7;border-top:5px solid #ECECEC;color:#383838}
+footer p,footer ul{font-size:.875em}
+footer ul{margin:0;padding:0;list-style:none}
+footer ul a{display:block;padding:12px;text-decoration:none;color:#383838;border-left:1px solid #F5F5F5;transition:all 0.2s ease 0s}
+footer ul a:hover{background:#FFF;border-left-color:#383838;text-decoration:none}
+
+#geolocation p.warning,#geolocation p.loading{margin:3em 0;text-align:center;}
+
+p.loading{padding-bottom:36px;background:url(../img/loading.gif) no-repeat bottom center}
+
+
+/* Adapted from http://lea.verou.me/2011/08/accessible-star-rating-widget-with-pure-css/ */
+.rating:not(:checked){float:left;margin-left:1em;}
+.rating:not(:checked) > input.star{clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}
+.rating label{margin-right:1em} /* Backup */
+.rating:not(:checked) > label.star{float:right;width:1em;padding:0 .1em;margin:0;overflow:hidden;white-space:nowrap;cursor:pointer;color:#DDD}
+.rating:not(:checked) > label.abstain, .rating:not(:checked) > span{float:right;margin:.15em 0 0 1.5em;font-size:.85em}
+.rating:not(:checked) > label.star:before{content:'\2605\00A0\00A0\00A0';} /* Filled star and 3 non-breaking spaces */
+.rating > input.star:checked ~ label.star,.stars{color:goldenrod} /* Selected */
+
+.rating:not(:checked) > label.star:hover,
+.rating:not(:checked) > label.star:hover ~ label.star,
+.rating > input.star:checked + label.star:hover,
+.rating > input.star:checked + label.star:hover ~ label.star,
+.rating > input.star:checked ~ label.star:hover,
+.rating > input.star:checked ~ label.star:hover ~ label.star,
+.rating > label.star:hover ~ input.star:checked ~ label.star {color:gold} /* highlighted */
+
+.rating > label.star:active {position:relative;top:1px;left:1px}
+
+.stars,.rating:not(:checked) > label.star:before{font-size:1.25em;line-height:1.2944}
+table .stars{font-size:inherit;line-height:inherit}
+
+
+@media (max-width:36em){
+	h1.headline{font-size:7vw}
+}
+
+@media (max-width:32em){
+	.left,.right{margin-right:0;float:none;width:auto}
+}
+
+@media (max-width:30em) {
+	html{font-size:1em}
+	.optional{text-indent:-9999px;overflow:hidden}
+	.stars,.rating:not(:checked) > label.star:before{font-size:inherit;line-height:inherit}
+}
+
+@media (max-width:24em) {
+	header h1,header nav ul{float:none;text-align:center}
+	table .stars{overflow:hidden;text-indent:-9999px;display:block;width:1.5em;overflow:hidden;position:relative}
+	table .stars:after{content:attr(data-label);position:absolute;top:0;left:9999px}
+}

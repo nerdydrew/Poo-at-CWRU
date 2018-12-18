@@ -1,15 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
-    <title>Poo</title>
+    <meta charset="UTF-8" />
+                                           <!--o/-
+                                          dyyyhhds:`
+                                          ydyyyyyhhds:`
+                                         +dhyyyyyyyhhdh/`
+                                       `sdhyyyyyyyyyyyhdh-
+                                       /dhhyyyhhyyhhyyhhhd+
+                                       +dhyyhhhhyyhhhyyyyhd/
+                                    .+shhyyyyyyyyyyyhyyyhydh
+                                  :yhyssssyyyyyhyyyyyyyyhhdh/-`
+                                 odysyyyyyyyhyyyyyyyyyyhyyyyhhdy/`
+                                +dyyyyyyyyyyyyyyyyyhhhyyssyyyyhhdy.
+                                ydyyhhhhhhhhhyyyhhyyyssyyyyyhhhhhds
+                                odhhy+/:::/shyyyysssyyys+/:::+syydh
+                              -+sdh+-..-:...:sssyyyyyy+-..::...:yhhs/`
+                            :yhyss/.`-dNNN+``-yyyyyyh/.`-dNNm/`.-ssyhdo.
+                           odyssss-` yNNNNN.`.ohyyhyy.``hNNNNm``.ossyyhh-
+                          :dhyyyyy.` ymmmmm. `ohhhhhy.` hmmmmm` `oyyyyydy
+                          sdhyyhhh/` -dmmm+  .yhhhyyy:` -dmmm/  .yyyyyhhd`
+                          odhhhhhhh/` `-:.  .syyssssss:` `-:`  -syhyyyhdh`
+                        `-oddhhhhyyys:.```-/ssssssssssso:.``.:ohyhhyyhhds-
+                      :shhyssssssssssssssssssssssssssyyyyyyhhyhhhhhhhyyyhdho-
+                    `sdysssssssssssssss/////////////////////yhhhhhhyyyyyyyhhdo`
+                    ydssssssssssssssssys:.````````````````-ohhhhhyyyyyyyyyyhhdo
+                   .dhyyyyyyyyyyyyyyyyyyyy+-`          ./shhhhyyyyyyyyhyyyyyyhd`
+                   -dhyyyyyyyyyyyyyyhhhhhhhhhs+/////+oyhhhhyyyyyyyhhhhhhhhhhhhd`
+                   `hdhhyyyyyhyhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhd+
+                    -hdhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhdds-
+                     `/yddhhhhhddddhysoooosyyhddddddddddddddddddddddddhys+-`
+                        `.-:///:-.`            ``..--:::://////::-->
+
+    <title>Poo at CWRU</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <body>
-    <%= yield %>
+    <header id="header">
+      <nav>
+        <h1>
+          <%= link_to root_path do %>
+            <img src="/images/logo.svg" />Poo at CWRU
+          <% end %>
+        </h1>
+
+        <ul>
+          <li><%= link_to 'Find', root_path %></li>
+          <li><a href="?login">Log In</a></li>
+        </ul>
+      </nav>
+
+    </header>
+
+    <article>
+      <%= yield %>
+    </article>
+
+    <footer>
+  <section>
+    <div class="left">
+      <p>Shine on, forever, Case Western Reserve.</p>
+    </div>
+    <div class="right">
+      <ul>
+        <li><a href="mailto:atm62@case.edu">Contact</a></li>
+        <li><a href="https://github.com/nerdydrew/Poo-at-CWRU">GitHub</a></li>
+      </ul>
+    </div>
+  </section>
+</footer>
   </body>
 </html>
