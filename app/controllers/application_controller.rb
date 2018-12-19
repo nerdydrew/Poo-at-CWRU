@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 	def check_login
 		@logged_in = session[:cas_user].present?
 		if @logged_in
-			@username = session[:cas_user]
+			@user = User.find_or_create_by(case_id: session[:cas_user])
 		end
 	end
 

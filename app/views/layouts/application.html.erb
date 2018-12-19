@@ -42,11 +42,7 @@
   </head>
 
   <body>
-    <header id="header"
-        <% if @logged_in %>
-            class="double"
-         <% end %>
-         >
+    <header id="header"<%= raw(' class="double"') if @logged_in %>>
       <nav>
         <h1>
           <%= link_to root_path do %>
@@ -59,11 +55,11 @@
           <% if @logged_in %>
             <li><%= link_to "Log Out", controller: "application", action: "logout" %></li>
             <li class="genders">
-              <a href="?male" class="male" title="View men&rsquo;s restrooms">&#9794;</a>
+              <%= link_to raw("&#9794;"), set_gender_path(:gender => 'male'), method: :patch, class: "male#{' selected' if @user.gender == 'male'}", title: raw("View men&rsquo;s restrooms") %>
               /
-              <a href="?female" class="female" title="View women&rsquo;s restrooms">&#9792;</a>
+              <%= link_to raw("&#9792;"), set_gender_path(:gender => 'female'), method: :patch, class: "female#{' selected' if @user.gender == 'female'}", title: raw("View women&rsquo;s restrooms") %>
               /
-              <a href="?all" class="all" title="View all restrooms, regardless of gender">All</a>
+              <%= link_to "All", set_gender_path(:gender => 'any'), method: :patch, class: "any#{' selected' if @user.gender == 'any'}", title: "View all restrooms, regardless of gender" %>
             </li>
           <% else %>
             <li><%= link_to 'Log In', CASClient::Frameworks::Rails::Filter.login_url(controller) %></li>
