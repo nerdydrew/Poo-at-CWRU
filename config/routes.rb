@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-	resources :buildings
-
 	resources :users, only: [] do
 		member do
 			patch :set_gender
@@ -13,6 +11,9 @@ Rails.application.routes.draw do
 	controller :application do
 		get :logout, action: :logout
 	end
+
+	resources :buildings, only: [:show]
+	# get '/:slug' => 'buildings#show'
 
 	root "welcome#index"
 end
