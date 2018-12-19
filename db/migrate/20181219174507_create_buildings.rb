@@ -20,7 +20,7 @@ class CreateBuildings < ActiveRecord::Migration[5.2]
       t.string :blurb
       t.float :latitude, null: false
       t.float :longitude, null: false
-      t.column :type, :building_type_enum
+      t.column :building_type, :building_type_enum
       t.timestamps
     end
   end

@@ -1,5 +1,5 @@
 class Building < ApplicationRecord
-	enum type: {
+	enum building_type: {
 		academic: 'academic',
 		administrative: 'administrative',
 		athletic: 'athletic',

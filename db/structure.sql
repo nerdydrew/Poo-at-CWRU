@@ -60,7 +60,7 @@ CREATE TABLE public.buildings (
     blurb character varying,
     latitude double precision NOT NULL,
     longitude double precision NOT NULL,
-    type public.building_type_enum,
+    building_type public.building_type_enum,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
