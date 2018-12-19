@@ -10,10 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_172002) do
+ActiveRecord::Schema.define(version: 2018_12_19_174507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+# Could not dump table "buildings" because of following StandardError
+#   Unknown type 'building_type_enum' for column 'type'
 
 # Could not dump table "users" because of following StandardError
 #   Unknown type 'gender_enum' for column 'gender'

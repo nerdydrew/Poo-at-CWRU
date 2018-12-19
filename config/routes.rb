@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+	resources :buildings
+
 	resources :users, only: [] do
 		member do
 			patch :set_gender
