@@ -173,6 +173,20 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: index_buildings_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_buildings_on_name ON public.buildings USING btree (name);
+
+
+--
+-- Name: index_buildings_on_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_buildings_on_slug ON public.buildings USING btree (slug);
+
+
+--
 -- Name: index_users_on_case_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -188,6 +202,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20181219021446'),
 ('20181219172002'),
-('20181219174507');
+('20181219174507'),
+('20181219212741');
 
 
