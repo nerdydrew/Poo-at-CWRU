@@ -15,5 +15,8 @@ module Poo
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # https://sipsandbits.com/2018/04/30/using-database-native-enums-with-rails/
+    config.active_record.schema_format = :sql
   end
 end
