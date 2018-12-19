@@ -42,7 +42,11 @@
   </head>
 
   <body>
-    <header id="header">
+    <header id="header"
+        <% if @logged_in %>
+            class="double"
+         <% end %>
+         >
       <nav>
         <h1>
           <%= link_to root_path do %>
@@ -52,7 +56,18 @@
 
         <ul>
           <li><%= link_to 'Find', root_path %></li>
-          <li><a href="?login">Log In</a></li>
+          <% if @logged_in %>
+            <li><%= link_to "Log Out", controller: "application", action: "logout" %></li>
+            <li class="genders">
+              <a href="?male" class="male" title="View men&rsquo;s restrooms">&#9794;</a>
+              /
+              <a href="?female" class="female" title="View women&rsquo;s restrooms">&#9792;</a>
+              /
+              <a href="?all" class="all" title="View all restrooms, regardless of gender">All</a>
+            </li>
+          <% else %>
+            <li><%= link_to 'Log In', CASClient::Frameworks::Rails::Filter.login_url(controller) %></li>
+          <% end %>
         </ul>
       </nav>
 
