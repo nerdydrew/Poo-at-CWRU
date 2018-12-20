@@ -1,6 +1,10 @@
 class Building < ApplicationRecord
   reverse_geocoded_by :latitude, :longitude
 
+  def to_param
+    slug
+  end
+
   enum building_type: {
     academic: 'academic',
     administrative: 'administrative',

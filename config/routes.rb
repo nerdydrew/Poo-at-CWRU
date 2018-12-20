@@ -12,12 +12,11 @@ Rails.application.routes.draw do
 		get :logout, action: :logout
 	end
 
-	resources :buildings, only: [:show] do
+	resources :buildings, only: [:show], param: :slug, path: '' do
 		collection do
 			get :near_me
 		end
 	end
-	# get '/:slug' => 'buildings#show'
 
 	root "welcome#index"
 end
