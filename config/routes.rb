@@ -13,8 +13,9 @@ Rails.application.routes.draw do
 	end
 
 	resources :buildings, only: [:show], param: :slug, path: '' do
-		
-		resources :floors, only: [:show], param: :slug, path: ''
+		resources :floors, only: [:show], param: :slug, path: '' do
+			resources :toilets, only: [:new, :create, :show]
+		end
 
 		collection do
 			get :near_me

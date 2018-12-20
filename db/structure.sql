@@ -129,6 +129,46 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: toilets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.toilets (
+    id bigint NOT NULL,
+    name text NOT NULL,
+    slug text NOT NULL,
+    gender public.gender_enum NOT NULL,
+    building_id bigint NOT NULL,
+    floor_id bigint NOT NULL,
+    stalls integer,
+    urinals integer,
+    sinks integer,
+    comments text,
+    creator text NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: toilets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.toilets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: toilets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.toilets_id_seq OWNED BY public.toilets.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -175,6 +215,13 @@ ALTER TABLE ONLY public.floors ALTER COLUMN id SET DEFAULT nextval('public.floor
 
 
 --
+-- Name: toilets id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.toilets ALTER COLUMN id SET DEFAULT nextval('public.toilets_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -211,6 +258,14 @@ ALTER TABLE ONLY public.floors
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: toilets toilets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.toilets
+    ADD CONSTRAINT toilets_pkey PRIMARY KEY (id);
 
 
 --
@@ -257,6 +312,34 @@ CREATE UNIQUE INDEX index_floors_on_building_id_and_slug ON public.floors USING 
 
 
 --
+-- Name: index_toilets_on_building_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_toilets_on_building_id ON public.toilets USING btree (building_id);
+
+
+--
+-- Name: index_toilets_on_building_id_and_floor_id_and_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_toilets_on_building_id_and_floor_id_and_name ON public.toilets USING btree (building_id, floor_id, name);
+
+
+--
+-- Name: index_toilets_on_building_id_and_floor_id_and_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_toilets_on_building_id_and_floor_id_and_slug ON public.toilets USING btree (building_id, floor_id, slug);
+
+
+--
+-- Name: index_toilets_on_floor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_toilets_on_floor_id ON public.toilets USING btree (floor_id);
+
+
+--
 -- Name: index_users_on_case_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -282,6 +365,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181219172002'),
 ('20181219174507'),
 ('20181219212741'),
-('20181220162921');
+('20181220162921'),
+('20181220192723');
 
 

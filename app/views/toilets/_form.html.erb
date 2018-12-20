@@ -1,0 +1,62 @@
+<%= form_with(model: toilet, url: building_floor_toilets_path, local: true) do |form| %>
+  <% if toilet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(toilet.errors.count, "error") %> prohibited this toilet from being saved:</h2>
+
+      <ul>
+      <% toilet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :slug %>
+    <%= form.text_field :slug %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.text_field :gender %>
+  </div>
+
+  <div class="field">
+    <%= form.label :building_id %>
+    <%= form.text_field :building_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :floor_id %>
+    <%= form.text_field :floor_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stalls %>
+    <%= form.text_field :stalls %>
+  </div>
+
+  <div class="field">
+    <%= form.label :urinals %>
+    <%= form.text_field :urinals %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sinks %>
+    <%= form.text_field :sinks %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comments %>
+    <%= form.text_field :comments %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
