@@ -1,6 +1,6 @@
 class BuildingsController < ApplicationController
   def show
-    @building = Building.find_by!(slug: params[:slug])
+    @building = Building.find_by_slug!(params[:slug])
   end
 
   def near_me

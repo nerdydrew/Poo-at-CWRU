@@ -1,7 +1,7 @@
 class FloorsController < ApplicationController
 
   def show
-    building = Building.find_by!(slug: params[:building_slug])
+    building = Building.find_by_slug!(params[:building_slug])
     @floor = Floor.find_by!(building_id: building.id, slug: params[:slug])
     @floor.building = building
   end
