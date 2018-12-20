@@ -4,4 +4,8 @@ class Floor < ApplicationRecord
   validates :level, uniqueness: {scope: :building}
 
   belongs_to :building
+
+  def to_param
+    slug
+  end
 end
