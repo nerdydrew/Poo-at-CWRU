@@ -1,0 +1,67 @@
+<div id="geolocation">
+	<% if @buildings.present? %>
+		<table>
+			<thead>
+				<th>Nearest Buildings</th>
+			</thead>
+			<tbody>
+				<%@buildings.each do |location|%>
+					<tr>
+						<td><%= link_to location.name, location %></td>
+					</tr>
+				<%end%>
+			</tbody>
+		</table>
+	<% elsif @searched %>
+		<p class="warning">I can&rsquo;t find any buildings near you.</p>
+	<% end %>
+</div>
+
+
+<script>
+	var elementToUpdate = document.getElementById("geolocation");
+
+	// On load (unless we've already searched), request geolocation and start searching.
+	<%= "window.onload = getNearbyBuildings;" unless @searched %>
+	function getNearbyBuildings() {
+		if ("geolocation" in navigator) {
+			elementToUpdate.innerHTML="<p class=\"loading\">Trying to get location&hellip;</p>";
+			navigator.geolocation.getCurrentPosition(findNearPosition, onError, {maximumAge: 30000});
+		} else {
+			elementToUpdate.innerHTML = "<p class=\"warning\">Your browser may not support geolocation.</p>";
+		}
+	}
+
+	// Takes in a coordinate position and uses AJAX.
+	function findNearPosition(position) {
+		elementToUpdate.innerHTML = "<p class=\"loading\">Location found. Determining nearest toilets&hellip;</p>";
+
+		var latitude = position.coords.latitude;
+		var longitude = position.coords.longitude;
+		var url = "<%= escape_javascript(near_me_buildings_path) %>?latitude=" + latitude + "&longitude=" + longitude;
+
+		// Pass in authenticity token so the AJAX doesn't get blocked.
+		var options = {
+			headers: {
+				"X-Requested-With": "XMLHttpRequest",
+				"X-CSRF-Token": "<%= form_authenticity_token %>"
+			},
+			credentials: "same-origin"
+		};
+
+		fetch(url, options)
+			.then(function (r) {return r.text();})
+			.then(function (results) {
+				elementToUpdate.innerHTML = results;
+			});
+	}
+
+	function onError(error) {
+		if (error.code == 1)
+			var message = "If you don&rsquo;t let us see your location, we can&rsquo;t find a nearby toilet!";
+		else {
+			var message = "There was a problem finding your location.";
+		}
+		elementToUpdate.innerHTML = "<p class=\"warning\">" + message + "</p>";
+	}
+</script>

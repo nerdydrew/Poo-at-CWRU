@@ -101,7 +101,7 @@ footer ul a:hover{background:#FFF;border-left-color:#383838;text-decoration:none
 
 #geolocation p.warning,#geolocation p.loading{margin:3em 0;text-align:center;}
 
-p.loading{padding-bottom:36px;background:url(../img/loading.gif) no-repeat bottom center}
+p.loading{padding-bottom:36px;background:url(../images/loading.gif) no-repeat bottom center}
 
 
 /* Adapted from http://lea.verou.me/2011/08/accessible-star-rating-widget-with-pure-css/ */
