@@ -4,4 +4,8 @@ class Toilet < ApplicationRecord
 
   belongs_to :building
   belongs_to :floor
+
+  def to_param
+    slug
+  end
 end

@@ -1,15 +1,19 @@
 class ToiletsController < ApplicationController
 
   def show
-    @toilet = Toilet.find(params[:id])
+    building = Building.find_by_slug!(params[:building_slug])
+    floor = Floor.find_by!(building_id: building.id, slug: params[:floor_slug])
+    @toilet = Toilet.find_by!(building_id: building.id, floor_id: floor.id, slug: params[:slug])
+
+    floor.building = building
+    @toilet.building = building
+    @toilet.floor = floor
   end
 
-  # GET /toilets/new
   def new
     @toilet = Toilet.new
   end
 
-  # POST /toilets
   def create
     @toilet = Toilet.new(toilet_params)
 
