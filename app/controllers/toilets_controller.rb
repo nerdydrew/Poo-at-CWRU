@@ -1,4 +1,5 @@
 class ToiletsController < ApplicationController
+  before_action CASClient::Frameworks::Rails::Filter, except: :show
 
   def show
     building = Building.find_by_slug!(params[:building_slug])
