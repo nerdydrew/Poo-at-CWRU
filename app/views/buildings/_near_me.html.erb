@@ -3,11 +3,13 @@
 		<table>
 			<thead>
 				<th>Nearest Buildings</th>
+				<th>Distance</th>
 			</thead>
 			<tbody>
-				<%@buildings.each do |location|%>
+				<%@buildings.each do |building|%>
 					<tr>
-						<td><%= link_to location.name, location %></td>
+						<td><%= link_to building.name, building %></td>
+						<td><%= link_to print_distance_and_bearing(building), building %></td>
 					</tr>
 				<%end%>
 			</tbody>

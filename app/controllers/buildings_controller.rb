@@ -5,13 +5,13 @@ class BuildingsController < ApplicationController
   end
 
   def near_me
-    @latitude = params[:latitude].to_f
-    @longitude = params[:longitude].to_f
+    latitude = params[:latitude].to_f
+    longitude = params[:longitude].to_f
 
-    if @latitude.present? and @longitude.present?
+    if latitude.present? and longitude.present?
       @searched = true
-      point = [@latitude, @longitude]
-      @buildings = Building.all
+      point = [latitude, longitude]
+      @buildings = Building.near(point, 5).limit(5)
     end
 
     respond_to do |format|
