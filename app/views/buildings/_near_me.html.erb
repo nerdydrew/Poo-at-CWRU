@@ -55,7 +55,8 @@
 			.then(function (r) {return r.text();})
 			.then(function (results) {
 				elementToUpdate.innerHTML = results;
-			});
+			})
+      .catch(onError);
 	}
 
 	function onError(error) {

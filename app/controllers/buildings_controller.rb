@@ -1,4 +1,6 @@
 class BuildingsController < ApplicationController
+  skip_before_action CASClient::Frameworks::Rails::GatewayFilter, only: :near_me
+
   def show
     @building = Building.find_by_slug!(params[:slug])
   end
