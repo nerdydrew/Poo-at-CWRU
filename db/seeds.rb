@@ -57,7 +57,7 @@ buildings_list = [
 ]
 
 buildings_list.each do |name, slug, building_type, latitude, longitude, blurb|
-	if !Building.exists?(slug: slug)
+	unless Building.exists?(slug: slug)
 		Building.create(
 			name: name,
 			slug: slug,
@@ -67,4 +67,89 @@ buildings_list.each do |name, slug, building_type, latitude, longitude, blurb|
 			blurb: blurb
 		)
 	end
+end
+
+buildings_with_basements = [
+	["adelbert-gym", 1, "LL", "ll"],
+	["adelbert-hall", 4, "B1", "b1"],
+	["allen-library", 3, "B1", "b1"],
+	["aw-smith", 4, "B1", "basement"],
+	["bingham", 3, "B1", "b1"],
+	["crawford", 7, "LL", "ll"],
+	["eldred", 3, "B1", "basement"],
+	["guilford-house", 3, "B1", "b1"],
+	["haydn-hall", 3, "B1", "b1"],
+	["ksl", 3, "LL", "ll"],
+	["leutner", 1, "L3", "l3"],
+	["mather-dance-center", 2, "B1", "b1"],
+	["mather-memorial-building", 2, "B1", "b1"],
+	["morley", 3, "B1", "b1"],
+	["pbl", 5, "LL", "ll"],
+	["thwing", 3, "LL", "ll"],
+	["tinkham-veale", 2, "B1", "b1"],
+	["wyant", 2, "B1", "b1"]
+]
+
+def create_aboveground_floors(building_id, top_floor)
+	(1..top_floor).each do |level|
+		unless Floor.exists?(building_id: building_id, level: level)
+			Floor.create(
+				building_id: building_id,
+				slug: level.to_s,
+				level: level
+			)
+		end
+	end
+end
+
+buildings_with_basements.each do |building_slug, top_level, basement_name, basement_slug|
+	building = Building.find_by!(slug: building_slug)
+
+	unless Floor.exists?(building_id: building.id, level: -1)
+		Floor.create(
+			building_id: building.id,
+			name: basement_name,
+			slug: basement_slug,
+			level: -1
+		)
+	end
+
+	create_aboveground_floors(building.id, top_level)
+end
+
+
+buildings_without_basements = [
+	["amasa-stone", 2],
+	["bellflower", 1],
+	["carlton", 2],
+	["clapp", 4],
+	["clark-hall", 4],
+	["degrace", 3],
+	["dively", 2],
+	["fribley", 2],
+	["glennan", 8],
+	["harkness-chapel", 1],
+	["kent-hale-smith", 5],
+	["mandel-community-center", 2],
+	["mather-house", 4],
+	["millis-schmitt", 3],
+	["msass", 3],
+	["nord", 4],
+	["olin", 8],
+	["rockefeller", 4],
+	["sears", 6],
+	["strosacker", 2],
+	["thinkbox", 7, 1],
+	["tomlinson", 3],
+	["veale", 4],
+	["wade", 1],
+	["white", 5],
+	["wickenden", 5],
+	["wolstein", 2],
+	["yost", 4]
+]
+
+buildings_without_basements.each do |building_slug, top_level|
+	building = Building.find_by!(slug: building_slug)
+	create_aboveground_floors(building.id, top_level)
 end
