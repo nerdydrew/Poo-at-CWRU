@@ -86,6 +86,40 @@ ALTER SEQUENCE public.buildings_id_seq OWNED BY public.buildings.id;
 
 
 --
+-- Name: floors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.floors (
+    id bigint NOT NULL,
+    name text,
+    slug text NOT NULL,
+    level smallint NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    building_id bigint NOT NULL
+);
+
+
+--
+-- Name: floors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.floors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: floors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.floors_id_seq OWNED BY public.floors.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -134,6 +168,13 @@ ALTER TABLE ONLY public.buildings ALTER COLUMN id SET DEFAULT nextval('public.bu
 
 
 --
+-- Name: floors id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.floors ALTER COLUMN id SET DEFAULT nextval('public.floors_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -154,6 +195,14 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 ALTER TABLE ONLY public.buildings
     ADD CONSTRAINT buildings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: floors floors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.floors
+    ADD CONSTRAINT floors_pkey PRIMARY KEY (id);
 
 
 --
@@ -187,10 +236,39 @@ CREATE UNIQUE INDEX index_buildings_on_slug ON public.buildings USING btree (slu
 
 
 --
+-- Name: index_floors_on_building_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_floors_on_building_id ON public.floors USING btree (building_id);
+
+
+--
+-- Name: index_floors_on_building_id_and_level; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_floors_on_building_id_and_level ON public.floors USING btree (building_id, level);
+
+
+--
+-- Name: index_floors_on_building_id_and_slug; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_floors_on_building_id_and_slug ON public.floors USING btree (building_id, slug);
+
+
+--
 -- Name: index_users_on_case_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_case_id ON public.users USING btree (case_id);
+
+
+--
+-- Name: floors fk_rails_ae3c731da8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.floors
+    ADD CONSTRAINT fk_rails_ae3c731da8 FOREIGN KEY (building_id) REFERENCES public.buildings(id);
 
 
 --
@@ -203,6 +281,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181219021446'),
 ('20181219172002'),
 ('20181219174507'),
-('20181219212741');
+('20181219212741'),
+('20181220162921');
 
 
