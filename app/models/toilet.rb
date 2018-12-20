@@ -8,4 +8,8 @@ class Toilet < ApplicationRecord
   def to_param
     slug
   end
+
+  def to_breadcrumb
+    self.name + " < " + self.floor.to_breadcrumb
+  end
 end

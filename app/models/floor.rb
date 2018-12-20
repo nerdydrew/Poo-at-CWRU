@@ -9,4 +9,25 @@ class Floor < ApplicationRecord
   def to_param
     slug
   end
+
+  def to_breadcrumb
+    self.pretty_name + " < " + self.building.name
+  end
+
+  def pretty_name
+    if self.name.present?
+      case self.name
+      when "LL"
+        "Lower Level"
+      when "B1"
+        "Basement 1"
+      else
+        self.name
+      end
+    else
+      "#{self.level.ordinalize} Floor"
+    end
+  end
+
+
 end
