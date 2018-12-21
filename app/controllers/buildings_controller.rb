@@ -3,6 +3,10 @@ class BuildingsController < ApplicationController
 
   def show
     @building = Building.find_by_slug!(params[:slug])
+    @floor = Floor.where(building_id: @building.id, level: 1).take
+
+    @toilets = Toilet.where(building_id: @building.id).joins(:floor).preload(:floor).order("floors.level")
+    @display_floors = true
   end
 
   def near_me

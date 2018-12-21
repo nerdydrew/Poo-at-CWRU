@@ -1,21 +1,5 @@
 <% provide(:title, @floor.to_breadcrumb) %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @floor.name %>
-</p>
+<h1><%= link_to @floor.building.name, @floor.building %> &gt; <%= @floor.pretty_name %></h1>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @floor.slug %>
-</p>
-
-<p>
-  <strong>Level:</strong>
-  <%= @floor.level %>
-</p>
-
-<p>
-  <strong>Building:</strong>
-  <%= @floor.building.slug %>
-</p>
+<%= render "toilets/index" %>

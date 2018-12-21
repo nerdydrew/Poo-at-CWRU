@@ -2,32 +2,6 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @building.name %>
-</p>
+<h1><%= @building.name %></h1>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @building.slug %>
-</p>
-
-<p>
-  <strong>Blurb:</strong>
-  <%= @building.blurb %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @building.building_type %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @building.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @building.longitude %>
-</p>
+<%= render "toilets/index" %>

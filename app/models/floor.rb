@@ -29,5 +29,9 @@ class Floor < ApplicationRecord
     end
   end
 
+  def pretty_short_name
+    self.name.presence || self.level.ordinalize.to_s
+  end
+
 
 end

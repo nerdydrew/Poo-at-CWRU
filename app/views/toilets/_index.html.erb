@@ -1,0 +1,27 @@
+<% if @toilets.present? %>
+  <table>
+    <thead>
+      <tr>
+        <%= content_tag :th, "Floor", class: "optional" if @display_floors %>
+        <th class="optional">Gender</th>
+        <th class="optional">Rating</th>
+        <th>Restroom Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @toilets.each do |toilet| %>
+        <tr>
+          <%= content_tag :td, link_to(toilet.floor.pretty_short_name, building_floor_toilet_path(@floor.building, @floor, toilet)) if @display_floors %>
+          <td><%= link_to toilet.gender_html, building_floor_toilet_path(@floor.building, @floor, toilet) %></td>
+          <td><%= link_to "TODO", building_floor_toilet_path(@floor.building, @floor, toilet) %></td>
+          <td><%= link_to toilet.name, building_floor_toilet_path(@floor.building, @floor, toilet) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p>Am I missing a restroom? Please <%= link_to "add it here", new_building_floor_toilet_path(@floor.building, @floor) %>.</p>
+
+<% else %>
+  <p>I don&rsquo;t know of any restrooms here! Would you like to <%= link_to "add a restroom", new_building_floor_toilet_path(@floor.building, @floor) %>?</p>
+<% end %>
