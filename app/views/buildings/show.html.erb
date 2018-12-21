@@ -4,4 +4,6 @@
 
 <h1><%= @building.name %></h1>
 
+<%= content_tag :p, @building.blurb.html_safe if @building.blurb.present? %>
+
 <%= render "toilets/index" %>
