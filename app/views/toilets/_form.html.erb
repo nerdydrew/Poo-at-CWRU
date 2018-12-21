@@ -11,15 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
 
-  <div class="field">
-    <%= form.label :slug %>
-    <%= form.text_field :slug %>
-  </div>
+  <dl>
+    <dt><%= form.label :name %></dt>
+    <dd>
+      <%= form.text_field :name, required: true %>
+      <span class="minor">e.g. &ldquo;Across from room 223&rdquo; or &ldquo;Near the stairs&rdquo;</span>
+    </dd>
+  </dl>
 
   <div class="field">
     <%= form.label :gender %>

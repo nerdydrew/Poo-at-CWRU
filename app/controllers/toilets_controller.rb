@@ -18,6 +18,7 @@ class ToiletsController < ApplicationController
   def create
     @toilet = Toilet.new(toilet_params)
 
+    @toilet.slug = @toilet.name.parameterize
     @toilet.creator = session[:cas_user]
 
     if @toilet.save
