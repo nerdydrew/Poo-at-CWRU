@@ -1,53 +1,24 @@
 <% provide(:title, @toilet.to_breadcrumb) %>
 
+<h1>
+  <%= link_to @toilet.building.name, @toilet.building %>
+  &gt;
+  <%= link_to @toilet.floor.pretty_name, [@toilet.building, @toilet.floor] %>
+  &gt;
+  <%= @toilet.name %>
+</h1>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @toilet.name %>
-</p>
 
-<p>
-  <strong>Slug:</strong>
-  <%= @toilet.slug %>
-</p>
-
-<p>
-  <strong>Gender:</strong>
-  <%= @toilet.gender %>
-</p>
-
-<p>
-  <strong>Building:</strong>
-  <%= @toilet.building %>
-</p>
-
-<p>
-  <strong>Floor:</strong>
-  <%= @toilet.floor %>
-</p>
-
-<p>
-  <strong>Stalls:</strong>
-  <%= @toilet.stalls %>
-</p>
-
-<p>
-  <strong>Urinals:</strong>
-  <%= @toilet.urinals %>
-</p>
-
-<p>
-  <strong>Sinks:</strong>
-  <%= @toilet.sinks %>
-</p>
-
-<p>
-  <strong>Comments:</strong>
-  <%= @toilet.comments %>
-</p>
-
-<p>
-  <strong>Creator:</strong>
-  <%= @toilet.creator %>
-</p>
+<section>
+  <dl>
+    <dt>Gender</dt><dd><%= @toilet.gender_html %></dd>
+    <dt>Sinks</dt><dd><%= @toilet.sinks.presence || "?" %></dd>
+    <% if @toilet.gender == "male" %>
+      <dt>Urinals</dt><dd><%= @toilet.urinals.presence || "?" %></dd>
+    <% end %>
+    <dt>Stalls</dt><dd><%= @toilet.stalls.presence || "?" %></dd>
+    <dt>Reviews</dt><dd>TODO</dd>
+  </dl>
+</section>

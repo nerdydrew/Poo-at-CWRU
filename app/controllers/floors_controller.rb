@@ -1,11 +1,11 @@
 class FloorsController < ApplicationController
 
   def show
-    building = Building.find_by_slug!(params[:building_slug])
-    @floor = Floor.find_by!(building_id: building.id, slug: params[:slug])
-    @floor.building = building
+    @building = Building.find_by_slug!(params[:building_slug])
+    @floor = Floor.find_by!(building_id: @building.id, slug: params[:slug])
+    @floor.building = @building
 
-    @toilets = Toilet.where(building_id: building.id, floor_id: @floor.id)
+    @toilets = Toilet.where(building_id: @building.id, floor_id: @floor.id)
   end
 
   private
