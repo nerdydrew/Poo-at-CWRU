@@ -11,17 +11,17 @@
     <tbody>
       <% @toilets.each do |toilet| %>
         <tr>
-          <%= content_tag :td, link_to(toilet.floor.pretty_short_name, building_floor_toilet_path(@floor.building, @floor, toilet)) if @display_floors %>
-          <td><%= link_to toilet.gender_html, building_floor_toilet_path(@floor.building, @floor, toilet) %></td>
-          <td><%= link_to "TODO", building_floor_toilet_path(@floor.building, @floor, toilet) %></td>
-          <td><%= link_to toilet.name, building_floor_toilet_path(@floor.building, @floor, toilet) %></td>
+          <%= content_tag :td, link_to(toilet.floor.pretty_short_name, building_floor_toilet_path(@building, toilet.floor, toilet)) if @display_floors %>
+          <td><%= link_to toilet.gender_html, building_floor_toilet_path(@building, toilet.floor, toilet) %></td>
+          <td><%= link_to "TODO", building_floor_toilet_path(@building, toilet.floor, toilet) %></td>
+          <td><%= link_to toilet.name, building_floor_toilet_path(@building, toilet.floor, toilet) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <p>Am I missing a restroom? Please <%= link_to "add it here", new_building_floor_toilet_path(@floor.building, @floor) %>.</p>
+  <p>Am I missing a restroom? Please <%= link_to "add it here", new_building_floor_toilet_path(@building, @floor) %>.</p>
 
 <% else %>
-  <p>I don&rsquo;t know of any restrooms here! Would you like to <%= link_to "add a restroom", new_building_floor_toilet_path(@floor.building, @floor) %>?</p>
+  <p>I don&rsquo;t know of any restrooms here! Would you like to <%= link_to "add a restroom", new_building_floor_toilet_path(@building, @floor) %>?</p>
 <% end %>
