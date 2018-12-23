@@ -63,12 +63,42 @@
     document.getElementById("urinalContainer").style.display = mayHaveUrinal ? 'block' : 'none';
   }
 
+
+  function filterFloors() {
+    var selectedBuilding = document.getElementById("toilet_building_id");
+    if (selectedBuilding == null) {
+      return;
+    }
+    // Optgroups are grouped by name instead of ID to be user-friendly, so we need
+    // to get the dropdown's text instead of the value.
+    selectedBuilding = selectedBuilding.options[selectedBuilding.selectedIndex].text;
+
+    // Disable and hide all optgroups except for the one corresponding to the selected building.
+    var optGroups = document.querySelectorAll("#toilet_floor_id optgroup");
+    for (var i=0; i<optGroups.length; i++) {
+      var enabled = optGroups[i].label == selectedBuilding;
+      optGroups[i].style.display = enabled ? "block" : "none";
+      optGroups[i].disabled = !enabled;
+    }
+
+    // If the previously selected floor is now invalid, select the first valid floor instead.
+    var floorDropdown = document.getElementById("toilet_floor_id");
+    var currentFloorIsInvalid = floorDropdown[floorDropdown.selectedIndex].parentNode.disabled;
+    if (currentFloorIsInvalid) {
+      var firstOption = document.querySelector("#toilet_floor_id optgroup[label='" + selectedBuilding + "'] option");
+      firstOption.selected = true;
+    }
+  }
+
   window.onload=function() {
     var genders = document.getElementsByName("toilet[gender]");
-    for (var i=0,n=genders.length;i<n;i++) {
+    for (var i=0; i<genders.length; i++) {
       genders[i].addEventListener('change', showOrHideUrinals);
     }
 
     showOrHideUrinals();
+
+    document.getElementById("toilet_building_id").addEventListener('change', filterFloors);
+    filterFloors();
   };
 </script>

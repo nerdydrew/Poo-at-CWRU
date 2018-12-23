@@ -37,7 +37,7 @@ class Toilet < ApplicationRecord
   end
 
   def floor_belongs_to_building
-    unless floor.building_id == building.id
+    if floor.present? and building.present? and floor.building_id != building.id
       errors.add(:floor, "is in the wrong building")
     end
   end
