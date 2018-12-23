@@ -3,6 +3,10 @@ class Toilet < ApplicationRecord
   validates :gender, presence: true
   validates :gender, inclusion: { in: User.genders, message: "%{value} is invalid" }
 
+  validates :sinks,   numericality: { only_integer: true, greater_than_or_equal_to: 0, allow_nil: true }
+  validates :stalls,  numericality: { only_integer: true, greater_than_or_equal_to: 0, allow_nil: true }
+  validates :urinals, numericality: { only_integer: true, greater_than_or_equal_to: 0, allow_nil: true }
+
   belongs_to :building
   belongs_to :floor
 

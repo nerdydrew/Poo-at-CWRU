@@ -1,7 +1,7 @@
 <%= form_with(model: toilet, url: building_floor_toilets_path, local: true) do |form| %>
   <% if toilet.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(toilet.errors.count, "error") %> prohibited this toilet from being saved:</h2>
+      <h2><%= pluralize(toilet.errors.count, "error") %> prohibited this restroom from being saved:</h2>
 
       <ul>
       <% toilet.errors.full_messages.each do |message| %>
@@ -27,6 +27,18 @@
     <% end %>
   </dl>
 
+  Number of&hellip; <span class="minor">(optional)</span>
+  <dl class="numbers">
+    <dt><%= form.label :sinks %></dt>
+    <dd><%= form.number_field :sinks, min: 0, step: 1 %></dd>
+
+    <dt><%= form.label :stalls %></dt>
+    <dd><%= form.number_field :stalls, min: 0, step: 1 %></dd>
+
+    <dt><%= form.label :urinals %></dt>
+    <dd><%= form.number_field :urinals, min: 0, step: 1 %></dd>
+  </dl>
+
 
   <div class="field">
     <%= form.label :building_id %>
@@ -36,21 +48,6 @@
   <div class="field">
     <%= form.label :floor_id %>
     <%= form.text_field :floor_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :stalls %>
-    <%= form.text_field :stalls %>
-  </div>
-
-  <div class="field">
-    <%= form.label :urinals %>
-    <%= form.text_field :urinals %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sinks %>
-    <%= form.text_field :sinks %>
   </div>
 
   <div class="field">
