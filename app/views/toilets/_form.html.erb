@@ -52,10 +52,10 @@
     <%= form.text_field :floor_id %>
   </div>
 
-  <div class="field">
-    <%= form.label :comments %>
-    <%= form.text_field :comments %>
-  </div>
+  <dl>
+    <dt><%= form.label :comments %></dt>
+    <dd><%= form.text_area :comments, placeholder: "Optional. Remember you can review this restroom later." %></dd>
+  </dl>
 
   <div class="actions">
     <%= form.submit "Add Restroom" %>
