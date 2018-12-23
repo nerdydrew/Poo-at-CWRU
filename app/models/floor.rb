@@ -10,6 +10,10 @@ class Floor < ApplicationRecord
     slug
   end
 
+  def <=>(other)
+    self.level <=> other.level
+  end
+
   def to_breadcrumb
     self.pretty_name + " < " + self.building.name
   end

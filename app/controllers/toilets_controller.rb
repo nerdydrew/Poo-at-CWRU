@@ -12,6 +12,11 @@ class ToiletsController < ApplicationController
   end
 
   def new
+    @buildings = Building.all.eager_load(:floor)
+
+    params[:building_id] = Building.where(slug: params[:building_slug]).limit(1).pluck(:id)
+    params[:floor_id] = Floor.where(building_id: params[:building_id], slug: params[:floor_slug]).limit(1).pluck(:id)
+
     @toilet = Toilet.new
   end
 
@@ -24,6 +29,7 @@ class ToiletsController < ApplicationController
     if @toilet.save
       redirect_to [@toilet.building, @toilet.floor, @toilet], notice: 'Toilet was successfully created.'
     else
+      @buildings = Building.all.eager_load(:floor)
       render :new
     end
   end

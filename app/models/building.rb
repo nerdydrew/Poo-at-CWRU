@@ -7,6 +7,10 @@ class Building < ApplicationRecord
     slug
   end
 
+  def <=>(other)
+    self.name.casecmp(other.name)
+  end
+
   enum building_type: {
     academic: 'academic',
     administrative: 'administrative',
