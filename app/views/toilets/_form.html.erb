@@ -35,8 +35,10 @@
     <dt><%= form.label :stalls %></dt>
     <dd><%= form.number_field :stalls, min: 0, step: 1 %></dd>
 
-    <dt><%= form.label :urinals %></dt>
-    <dd><%= form.number_field :urinals, min: 0, step: 1 %></dd>
+    <div id="urinalContainer">
+      <dt><%= form.label :urinals %></dt>
+      <dd><%= form.number_field :urinals, min: 0, step: 1 %></dd>
+    </div>
   </dl>
 
 
@@ -59,3 +61,20 @@
     <%= form.submit "Add Restroom" %>
   </div>
 <% end %>
+
+<script>
+  function showOrHideUrinals() {
+    var selectedGender = document.querySelector('input[name="toilet[gender]"]:checked');
+    var mayHaveUrinal = selectedGender == null || selectedGender.value == "male";
+    document.getElementById("urinalContainer").style.display = mayHaveUrinal ? 'block' : 'none';
+  }
+
+  window.onload=function() {
+    var genders = document.getElementsByName("toilet[gender]");
+    for (var i=0,n=genders.length;i<n;i++) {
+      genders[i].addEventListener('change', showOrHideUrinals);
+    }
+
+    showOrHideUrinals();
+  };
+</script>
