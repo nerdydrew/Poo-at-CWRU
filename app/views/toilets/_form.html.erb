@@ -12,10 +12,10 @@
   <% end %>
 
   <dl>
-    <dt><%= form.label :building_id %></dt>
+    <dt><%= form.label :building_id, class: "#{'field_with_errors' if @toilet.errors[:building].present? }" %></dt>
     <dd><%= form.collection_select :building_id, @buildings, :id, :name, selected: params[:building_id] %>
 
-    <dt><%= form.label :floor_id %></dt>
+    <dt><%= form.label :floor_id, class: "#{'field_with_errors' if @toilet.errors[:floor].present? }" %></dt>
     <dd><%= form.grouped_collection_select :floor_id, @buildings, :floor, :name, :id, :pretty_name, selected: params[:floor_id] %></dd>
 
     <dt><%= form.label :name, class: "#{'field_with_errors' if @toilet.errors[:slug].present? }" %></dt>

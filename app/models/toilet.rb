@@ -9,6 +9,9 @@ class Toilet < ApplicationRecord
 
   validates_length_of :comments, maximum: 1000, allow_blank: true
 
+  validates :building, presence: true
+  validates :floor, presence: true
+
   belongs_to :building
   belongs_to :floor
 
