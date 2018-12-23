@@ -11,6 +11,7 @@ class Toilet < ApplicationRecord
 
   validates :building, presence: true
   validates :floor, presence: true
+  validate :floor_belongs_to_building
 
   belongs_to :building
   belongs_to :floor
@@ -33,5 +34,11 @@ class Toilet < ApplicationRecord
       '<span title="Anyone may use this restroom, regardless of gender.">Any</span>'
     end
     span.html_safe
+  end
+
+  def floor_belongs_to_building
+    unless floor.building_id == building.id
+      errors.add(:floor, "is in the wrong building")
+    end
   end
 end
