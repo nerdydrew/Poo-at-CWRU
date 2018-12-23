@@ -84,7 +84,8 @@ td{margin:0;padding:0}
 
 .info,.warning{padding:.5em 1em;border-radius:.25em}
 .info{background:#DFE}.warning{background:#FFA}
-.error{color:#C23;font-weight:700}
+.error,.field_with_errors{color:#C23;font-weight:700}
+div.field_with_errors{display:inline}
 .minor{color:#67696C;font-size:.85em}
 .numbers{margin-top:0}
 .numbers input{width:3em}

@@ -1,5 +1,7 @@
 class Toilet < ApplicationRecord
   validates :slug, :uniqueness => {:scope => [:building_id, :floor_id]}
+  validates :gender, presence: true
+  validates :gender, inclusion: { in: User.genders, message: "%{value} is invalid" }
 
   belongs_to :building
   belongs_to :floor
@@ -19,7 +21,7 @@ class Toilet < ApplicationRecord
     when 'female'
       '<span class="female" title="Female">&#9792;</span>'
     else
-      '<span class="bothGenders" title="Anyone may use this restroom, regardless of gender.">Any</span>'
+      '<span title="Anyone may use this restroom, regardless of gender.">Any</span>'
     end
     span.html_safe
   end
