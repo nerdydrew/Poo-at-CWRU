@@ -13,9 +13,9 @@
 
 
   <dl>
-    <dt><%= form.label :name %></dt>
+    <dt><%= form.label :name, class: "#{'field_with_errors' if @toilet.errors[:slug].present? }" %></dt>
     <dd>
-      <%= form.text_field :name, required: true %>
+      <%= form.text_field :name, required: true, class: "#{'field_with_errors' if @toilet.errors[:slug].present? }" %>
       <span class="minor">e.g. &ldquo;Across from room 223&rdquo; or &ldquo;Near the stairs&rdquo;</span>
     </dd>
   </dl>
