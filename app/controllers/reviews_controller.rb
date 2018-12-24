@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :update, :destroy]
+  before_action CASClient::Frameworks::Rails::Filter
+  before_action :authorize_user, except: [:new, :create]
 
   # GET /reviews/new
   def new
@@ -54,6 +56,12 @@ class ReviewsController < ApplicationController
       @toilet = Toilet.find_by!(building_id: building.id, floor_id: floor.id, slug: params[:toilet_slug])
       @toilet.building = building
       @toilet.floor = floor
+    end
+
+    def authorize_user
+      unless @review.user == @user.case_id
+        redirect_back(fallback_location: root_path, flash: { error: "You can't edit someone else's review." } ) and return
+      end
     end
 
     def review_params

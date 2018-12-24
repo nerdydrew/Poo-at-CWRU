@@ -8,8 +8,6 @@
   <%= @toilet.name %>
 </h1>
 
-<p id="notice"><%= notice %></p>
-
 <% if @current_users_review.present? %>
   <p>Would you like to <%= link_to 'update your review', edit_building_floor_toilet_review_path(@toilet.building.slug, @toilet.floor.slug, @toilet.slug, @current_users_review) %> or <%= link_to 'delete it', building_floor_toilet_review_path(@toilet.building.slug, @toilet.floor.slug, @toilet.slug, @current_users_review), method: :delete, data: { confirm: 'Are you sure you want to delete your review?' } %>?</p>
 <% else %>
