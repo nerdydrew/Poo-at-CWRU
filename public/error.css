@@ -1,0 +1,18 @@
+@import url(//fonts.googleapis.com/css?family=Titillium+Web:400,700);
+
+html,textarea{font:1em/1.618 "Titillium Web","Helvetica Neue","Arial Unicode MS",Arial,sans-serif}
+html{background:#FFF;color:#3E3F41;font-size:1.125em}
+body{background:#FFF;margin:0;padding:0}
+
+h1{font-size:2em;font-weight:400}
+a{color:#1368AB;text-decoration:none}
+a:hover{text-decoration:underline}
+p a{font-weight:700}
+
+header{background:#0A304E;color:#AAA}
+header a{color:#C6D4E3;text-decoration:none}
+header a:hover{color:#FFF;text-decoration:none}
+header h1{font-size:1.5em;margin:0;text-align:center;padding:1em;font-variant:small-caps}
+header img{height:1.5em;width:auto;padding-right:.5em;vertical-align:text-bottom}
+
+article{max-width:25em;margin:0 auto;padding:1em;overflow:hidden}
