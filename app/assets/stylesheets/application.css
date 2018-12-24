@@ -75,16 +75,13 @@ tbody tr{background:#EEE;border-bottom:.125em solid #FFF;}
 tbody tr:hover{background:#DDD}
 tbody a{display:block;padding:.125em .5em}
 tbody a:hover{text-decoration:none}
-table .verify,table .delete{text-align:center}
-a.verify{color:#0A7}
-a.verify:hover{color:#FFF;background:#0A7}
-a.delete{color:#C23}
-a.delete:hover{color:#FFF;background:#C23}
 td{margin:0;padding:0}
 
+#notice{color:#0A7}
 .info,.warning{padding:.5em 1em;border-radius:.25em}
 .info{background:#DFE}.warning{background:#FFA}
-.error,.field_with_errors{color:#C23;font-weight:700}
+.error,.field_with_errors,#error_explanation{color:#C23}
+.error,.field_with_errors{font-weight:700}
 div.field_with_errors{display:inline}
 .minor{color:#67696C;font-size:.85em}
 .numbers{margin-top:0}

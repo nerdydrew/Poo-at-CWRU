@@ -27,7 +27,7 @@ class ToiletsController < ApplicationController
     @toilet.creator = session[:cas_user]
 
     if @toilet.save
-      redirect_to [@toilet.building, @toilet.floor, @toilet], notice: 'Toilet was successfully created.'
+      redirect_to [@toilet.building, @toilet.floor, @toilet], notice: 'Restroom was successfully created.'
     else
       @buildings = Building.all.eager_load(:floor).sort
       render :new
