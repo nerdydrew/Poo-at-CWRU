@@ -30,6 +30,9 @@ class ToiletsController < ApplicationController
       redirect_to [@toilet.building, @toilet.floor, @toilet], notice: 'Restroom was successfully created.'
     else
       @buildings = Building.all.eager_load(:floor).sort
+      params[:building_id] = toilet_params[:building_id]
+      params[:floor_id] = toilet_params[:floor_id]
+
       render :new
     end
   end
