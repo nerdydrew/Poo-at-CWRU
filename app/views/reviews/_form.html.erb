@@ -1,0 +1,57 @@
+<%= form_with(model: review, url: url, local: true) do |form| %>
+  <% if review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+        <% review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :cleanliness %>
+    <%= form.number_field :cleanliness %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.number_field :location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wifi %>
+    <%= form.number_field :wifi %>
+  </div>
+
+  <div class="field">
+    <%= form.label :writing %>
+    <%= form.number_field :writing %>
+  </div>
+
+  <div class="field">
+    <%= form.label :traffic %>
+    <%= form.number_field :traffic %>
+  </div>
+
+  <div class="field">
+    <%= form.label :toilet_paper %>
+    <%= form.number_field :toilet_paper %>
+  </div>
+
+  <div class="field">
+    <%= form.label :overall %>
+    <%= form.number_field :overall, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comments %>
+    <%= form.text_area :comments, required: true, placeholder: "Required" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

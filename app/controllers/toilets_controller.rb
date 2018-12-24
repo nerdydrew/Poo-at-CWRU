@@ -9,6 +9,11 @@ class ToiletsController < ApplicationController
     floor.building = building
     @toilet.building = building
     @toilet.floor = floor
+
+    @reviews = Review.where(toilet_id: @toilet.id)
+    if @user.present?
+      @current_users_review = @reviews.find { |review| review.user == @user.case_id }
+    end
   end
 
   def new

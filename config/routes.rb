@@ -14,7 +14,9 @@ Rails.application.routes.draw do
 
 	resources :buildings, only: [:show], param: :slug, path: '' do
 		resources :floors, only: [:show], param: :slug, path: '' do
-			resources :toilets, only: [:new, :create, :show], param: :slug, path: ''
+			resources :toilets, only: [:new, :create, :show], param: :slug, path: '' do
+        resources :reviews, only: [:new, :create, :edit, :update, :destroy]
+      end
 		end
 
 		collection do

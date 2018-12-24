@@ -120,6 +120,46 @@ ALTER SEQUENCE public.floors_id_seq OWNED BY public.floors.id;
 
 
 --
+-- Name: reviews; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.reviews (
+    id bigint NOT NULL,
+    toilet_id bigint,
+    "user" character varying NOT NULL,
+    cleanliness integer,
+    location integer,
+    wifi integer,
+    writing integer,
+    traffic integer,
+    toilet_paper integer,
+    overall integer NOT NULL,
+    comments character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: reviews_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.reviews_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.reviews_id_seq OWNED BY public.reviews.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -215,6 +255,13 @@ ALTER TABLE ONLY public.floors ALTER COLUMN id SET DEFAULT nextval('public.floor
 
 
 --
+-- Name: reviews id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reviews ALTER COLUMN id SET DEFAULT nextval('public.reviews_id_seq'::regclass);
+
+
+--
 -- Name: toilets id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -250,6 +297,14 @@ ALTER TABLE ONLY public.buildings
 
 ALTER TABLE ONLY public.floors
     ADD CONSTRAINT floors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reviews reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reviews
+    ADD CONSTRAINT reviews_pkey PRIMARY KEY (id);
 
 
 --
@@ -312,6 +367,20 @@ CREATE UNIQUE INDEX index_floors_on_building_id_and_slug ON public.floors USING 
 
 
 --
+-- Name: index_reviews_on_toilet_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reviews_on_toilet_id ON public.reviews USING btree (toilet_id);
+
+
+--
+-- Name: index_reviews_on_toilet_id_and_user; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_reviews_on_toilet_id_and_user ON public.reviews USING btree (toilet_id, "user");
+
+
+--
 -- Name: index_toilets_on_building_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -355,6 +424,14 @@ ALTER TABLE ONLY public.floors
 
 
 --
+-- Name: reviews fk_rails_ea6bcaa95e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reviews
+    ADD CONSTRAINT fk_rails_ea6bcaa95e FOREIGN KEY (toilet_id) REFERENCES public.toilets(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -366,6 +443,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181219174507'),
 ('20181219212741'),
 ('20181220162921'),
-('20181220192723');
+('20181220192723'),
+('20181224033157');
 
 

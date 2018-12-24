@@ -1,0 +1,13 @@
+<% provide(:title, "Add a Review") %>
+
+<h1>
+  <%= link_to @toilet.building.name, @toilet.building %>
+  &gt;
+  <%= link_to @toilet.floor.pretty_name, [@toilet.building, @toilet.floor] %>
+  &gt;
+  <%= link_to @toilet.name, [@toilet.building, @toilet.floor, @toilet] %>
+  &gt;
+  Add Review
+</h1>
+
+<%= render 'form', review: @review, url: building_floor_toilet_reviews_path %>
