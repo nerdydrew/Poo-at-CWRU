@@ -22,3 +22,5 @@
     <dt>Reviews</dt><dd>TODO</dd>
   </dl>
 </section>
+
+<%= content_tag :p, "Special comments: " + @toilet.comments if @toilet.comments.present? %>
