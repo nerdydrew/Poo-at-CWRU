@@ -5,7 +5,7 @@ class BuildingsController < ApplicationController
     @building = Building.find_by_slug!(params[:slug])
     @floor = Floor.where(building_id: @building.id, level: 1).take
 
-    @toilets = Toilet.where(building_id: @building.id).joins(:floor).preload(:floor).order("floors.level")
+    @toilets = Toilet.get_by_building(@user, @building.id)
     @display_floors = true
   end
 

@@ -41,4 +41,29 @@ class Toilet < ApplicationRecord
       errors.add(:floor, "is in the wrong building")
     end
   end
+
+  def self.get_by_building(user, building_id)
+    query = Toilet.where(building_id: building_id)
+    query = filter_by_gender(user, query)
+    query.joins(:floor).preload(:floor).order("floors.level")
+  end
+
+  def self.get_by_building_and_floor(user, building_id, floor_id)
+    query = Toilet.where(building_id: building_id, floor_id: floor_id)
+    query = filter_by_gender(user, query)
+  end
+
+  private
+  def self.filter_by_gender(user, query)
+    if user.present?
+      case user.gender
+        when User.genders[:male]
+          return query.where.not(gender: User.genders[:female])
+        when User.genders[:female]
+          return query.where.not(gender: User.genders[:male])
+        end
+      end
+
+      return query
+  end
 end
