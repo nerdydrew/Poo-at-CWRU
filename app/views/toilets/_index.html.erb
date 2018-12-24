@@ -25,3 +25,10 @@
 <% else %>
   <p>I don&rsquo;t know of any restrooms here! Would you like to <%= link_to "add a restroom", new_building_floor_toilet_path(@building, @floor) %>?</p>
 <% end %>
+
+<h2>Nearby Buildings</h2>
+<ul>
+  <% @building.nearbys.limit(4).each do |building| %>
+    <li><%= link_to building.name + " (" + print_distance_and_bearing(building) + ")", building %></li>
+  <% end %>
+</ul>
