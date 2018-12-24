@@ -14,7 +14,6 @@ class BuildingsController < ApplicationController
     longitude = params[:longitude].to_f
 
     if latitude.present? and longitude.present?
-      @searched = true
       point = [latitude, longitude]
       @buildings = Building.near(point, 5).limit(5)
     end

@@ -1,12 +1,12 @@
 <div id="geolocation">
-	<% if @buildings.present? %>
+	<% if buildings.present? %>
 		<table>
 			<thead>
 				<th>Nearest Buildings</th>
 				<th>Distance</th>
 			</thead>
 			<tbody>
-				<%@buildings.each do |building|%>
+				<% buildings.each do |building| %>
 					<tr>
 						<td><%= link_to building.name, building %></td>
 						<td><%= link_to print_distance_and_bearing(building), building %></td>
@@ -14,7 +14,7 @@
 				<%end%>
 			</tbody>
 		</table>
-	<% elsif @searched %>
+	<% elsif !buildings.nil? and buildings.empty? %>
 		<p class="warning">I can&rsquo;t find any buildings near you.</p>
 	<% end %>
 </div>
@@ -24,7 +24,7 @@
 	var elementToUpdate = document.getElementById("geolocation");
 
 	// On load (unless we've already searched), request geolocation and start searching.
-	<%= "window.onload = getNearbyBuildings;" unless @searched %>
+	<%= "window.onload = getNearbyBuildings;" if buildings.nil? %>
 	function getNearbyBuildings() {
 		if ("geolocation" in navigator) {
 			elementToUpdate.innerHTML="<p class=\"loading\">Trying to get location&hellip;</p>";
