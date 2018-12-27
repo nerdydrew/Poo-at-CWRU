@@ -16,6 +16,8 @@ class Toilet < ApplicationRecord
   belongs_to :building
   belongs_to :floor
 
+  has_many :review
+
   def to_param
     slug
   end
@@ -42,15 +44,22 @@ class Toilet < ApplicationRecord
     end
   end
 
+  def get_ratings(field)
+    review.pluck(field)
+  end
+
   def self.get_by_building(user, building_id)
     query = Toilet.where(building_id: building_id)
     query = filter_by_gender(user, query)
-    query.joins(:floor).preload(:floor).order("floors.level")
+    query = query.joins(:floor).preload(:floor).order("floors.level")
+    query.includes(:review)
   end
 
   def self.get_by_building_and_floor(user, building_id, floor_id)
     query = Toilet.where(building_id: building_id, floor_id: floor_id)
     query = filter_by_gender(user, query)
+    query = query.preload(:floor)
+    query.includes(:review)
   end
 
   private

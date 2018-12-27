@@ -15,7 +15,16 @@
 <% end %>
 
 
-<section>
+<section class="left">
+  <dl>
+    <% [:cleanliness, :location, :wifi, :writing, :traffic, :toilet_paper, :overall].each do |field| %>
+      <dt><%= field.to_s.humanize %></dt>
+      <dd><%= rating_stars_html_by_field(@reviews, field) %></dd>
+    <% end %>
+  </dl>
+</section>
+
+<section class="right">
   <dl>
     <dt>Gender</dt><dd><%= @toilet.gender_html %></dd>
     <dt>Sinks</dt><dd><%= @toilet.sinks.presence || "?" %></dd>
@@ -26,6 +35,8 @@
     <dt>Reviews</dt><dd><%= @reviews.size %></dd>
   </dl>
 </section>
+
+<div style="clear:both"></div>
 
 <%= content_tag :p, "Special comments: " + @toilet.comments if @toilet.comments.present? %>
 

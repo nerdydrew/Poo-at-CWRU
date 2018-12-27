@@ -13,7 +13,7 @@
         <tr>
           <%= content_tag :td, link_to(toilet.floor.pretty_short_name, building_floor_toilet_path(@building, toilet.floor, toilet)) if @display_floors %>
           <td><%= link_to toilet.gender_html, building_floor_toilet_path(@building, toilet.floor, toilet) %></td>
-          <td><%= link_to "TODO", building_floor_toilet_path(@building, toilet.floor, toilet) %></td>
+          <td><%= link_to rating_stars_html(toilet.get_ratings(:overall)), building_floor_toilet_path(@building, toilet.floor, toilet) %></td>
           <td><%= link_to toilet.name, building_floor_toilet_path(@building, toilet.floor, toilet) %></td>
         </tr>
       <% end %>
