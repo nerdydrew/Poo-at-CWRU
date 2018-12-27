@@ -10,7 +10,7 @@ class ToiletsController < ApplicationController
     @toilet.building = building
     @toilet.floor = floor
 
-    @reviews = Review.where(toilet_id: @toilet.id)
+    @reviews = Review.where(toilet_id: @toilet.id).order(:created_at).reverse
     if @user.present?
       @current_users_review = @reviews.find { |review| review.user == @user.case_id }
     end
