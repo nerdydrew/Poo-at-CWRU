@@ -11,45 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :cleanliness %>
-    <%= form.number_field :cleanliness %>
-  </div>
+  <p>Your review is anonymous.</p>
 
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.number_field :location %>
-  </div>
+  <dl>
+    <% [:cleanliness, :location, :wifi, :writing, :traffic, :toilet_paper, :overall].each do |field| %>
+      <dt><%= form.label field %></dt>
+      <dd class="rating">
+        <% unless field == :overall %>
+          <label class="abstain">
+            <%= form.radio_button field, "" %>
+            N/A
+          </label>
+        <% end %>
 
-  <div class="field">
-    <%= form.label :wifi %>
-    <%= form.number_field :wifi %>
-  </div>
+        <% (1..5).reverse_each do |rating| %>
+          <%= form.radio_button field, rating, class: "star", required: field == :overall %>
+          <%= form.label field, rating, value: rating, class: "star" %>
+        <% end %>
+      </dd>
+      </div>
+    <% end %>
+  </dl>
 
-  <div class="field">
-    <%= form.label :writing %>
-    <%= form.number_field :writing %>
-  </div>
-
-  <div class="field">
-    <%= form.label :traffic %>
-    <%= form.number_field :traffic %>
-  </div>
-
-  <div class="field">
-    <%= form.label :toilet_paper %>
-    <%= form.number_field :toilet_paper %>
-  </div>
-
-  <div class="field">
-    <%= form.label :overall %>
-    <%= form.number_field :overall, required: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :comments %>
-    <%= form.text_area :comments, required: true, placeholder: "Required" %>
-  </div>
+  <dl>
+    <dt><%= form.label :comments %></dt>
+    <dd><%= form.text_area :comments, required: true, placeholder: "Required" %></dd>
+  </dl>
 
   <div class="actions">
     <%= form.submit %>
