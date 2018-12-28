@@ -3,3 +3,25 @@
 <p>Have you ever wanted to keep track of the best and worst restrooms at Case Western Reserve University? Probably not, but now you can.</p>
 
 <%= render "buildings/near_me", buildings: nil %>
+
+<div class="left">
+  <h2>Most Popular Buildings</h2>
+  <ul class="two_columns">
+    <% @most_popular_buildings.each do |building| %>
+      <li>
+        <%= link_to building.name, building %>
+      </li>
+    <%end %>
+  </ul>
+</div>
+
+<div class="right">
+  <h2>Random Buildings</h2>
+  <ul class="two_columns">
+    <% @random_buildings.each do |building| %>
+      <li>
+        <%= link_to building.name, building %>
+      </li>
+    <%end %>
+  </ul>
+</div>

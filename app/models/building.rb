@@ -2,6 +2,7 @@ class Building < ApplicationRecord
   reverse_geocoded_by :latitude, :longitude
 
   has_many :floor
+  has_many :toilet
 
   def to_param
     slug
