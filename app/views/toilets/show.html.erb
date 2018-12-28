@@ -28,7 +28,7 @@
   <dl>
     <dt>Gender</dt><dd><%= @toilet.gender_html %></dd>
     <dt>Sinks</dt><dd><%= @toilet.sinks.presence || "?" %></dd>
-    <% if @toilet.gender == "male" %>
+    <% if @toilet.gender == User.genders[:male] %>
       <dt>Urinals</dt><dd><%= @toilet.urinals.presence || "?" %></dd>
     <% end %>
     <dt>Stalls</dt><dd><%= @toilet.stalls.presence || "?" %></dd>
