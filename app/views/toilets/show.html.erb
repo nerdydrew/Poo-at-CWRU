@@ -41,7 +41,7 @@
 <%= content_tag :p, "Special comments: " + @toilet.comments if @toilet.comments.present? %>
 
 <% @reviews.each do |review| %>
-  <blockquote<%= ' class="yourComment"'.html_safe if review.user == @user.case_id %>>
+  <blockquote<%= ' class="yourComment"'.html_safe if @user.present? and review.user == @user.case_id %>>
     <p><%= review.comments %></p>
     <%= content_tag :cite, review.created_at.strftime("%B %d, %Y"),
       title: "Created on " + review.created_at.to_s + " and last updated " + review.updated_at.to_s %>
