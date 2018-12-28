@@ -1,11 +1,17 @@
 # Poo at CWRU
 ### A website to find and rate restrooms on campus
-This is the source code for [pooatcwru.com](http://pooatcwru.com). I originally wrote it around August 2014. In January 2016 I cleaned it up, rewrote some portions, and released it on GitHub.
+This is the source code for [pooatcwru.com](http://pooatcwru.com). I originally wrote it around August 2014. In January 2016 I cleaned it up, rewrote some portions, and released it on GitHub. In December 2018 I rewrote it again in Ruby on Rails.
 
 ## Installation
 * Clone the repo.
-* Create a SQL database and set it up using `sql_dump.sql`. 
-* Find `config-example.php` within `/application/config/`, rename it to `config.php`, and fill in the database info.
+* Install necessary libraries (like `gem install bundler`).
+* Run `bundle install`.
+* Configure the user and databases in `config/database.yml`.
+* Run `rails db:migrate`.
+* Run `rails db:seed:load` to load building and floor info.
+* Run `rails server`.
+* Access the website at `localhost:3000`.
 
 ## Acknowledgements
-This code is written on the [MINI framework](https://github.com/panique/mini/). This repo also includes [phpCAS](https://github.com/Jasig/phpCAS) for authentication with single sign-on.
+* Inspiration for this project came from a detailed rating system graffitied onto a bathroom wall in a CWRU building, which has been [saved for posterity on Reddit](https://www.reddit.com/r/cwru/comments/2anjrp/i_poop_in_one_of_the_quad_buildings_every_morning/).
+* Coordinates of CWRU buildings came from [case.edu/maps](http://www.case.edu/maps/).
