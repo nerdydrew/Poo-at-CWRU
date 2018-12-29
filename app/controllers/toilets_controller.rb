@@ -20,7 +20,7 @@ class ToiletsController < ApplicationController
     @buildings = Building.all.eager_load(:floor).sort
 
     @building_id = Building.where(slug: params[:building_slug]).limit(1).pluck(:id)
-    @floor_id = Floor.where(building_id: params[:building_id], slug: params[:floor_slug]).limit(1).pluck(:id)
+    @floor_id = Floor.where(building_id: @building_id, slug: params[:floor_slug]).limit(1).pluck(:id)
 
     @toilet = Toilet.new
   end
