@@ -38,3 +38,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rubycas-client', :git => 'git://github.com/rubycas/rubycas-client.git'
 
 gem 'geocoder'
+
+# https://github.com/roidrage/lograge
+gem 'lograge'
