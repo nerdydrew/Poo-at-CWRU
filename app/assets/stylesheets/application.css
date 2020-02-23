@@ -34,7 +34,7 @@ header a:hover{color:#FFF;text-decoration:none}
 header nav{margin:0 auto;max-width:35em;padding:2em 1em;overflow:auto}
 header h1{margin:0;float:left;font-variant:small-caps}
 header img{height:1.5em;width:auto;padding-right:.5em;vertical-align:text-bottom}
-header nav ul{margin:0;padding:.4em 0 0;list-style:none;text-align:right;text-transform:lowercase;font-size:1.125em;}
+header nav ul{margin:0;padding:.4em 0 0;list-style:none;text-align:right;font-size:1.125em}
 header nav ul li{display:inline;margin:0 .5em}
 header nav ul li a{padding:.25em}
 

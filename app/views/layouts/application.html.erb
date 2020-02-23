@@ -63,18 +63,17 @@
         </h1>
 
         <ul>
-          <li><%= link_to 'Find', root_path %></li>
           <% if @logged_in %>
-            <li><%= link_to "Log Out", controller: "application", action: "logout" %></li>
+            <li><%= link_to "log out", controller: "application", action: "logout" %></li>
             <li class="genders">
               <%= link_to "&#9794;".html_safe, set_gender_path(:gender => 'male'), method: :patch, class: "male#{' selected' if @user.gender == 'male'}", title: "View men&rsquo;s restrooms".html_safe %>
               /
               <%= link_to "&#9792;".html_safe, set_gender_path(:gender => 'female'), method: :patch, class: "female#{' selected' if @user.gender == 'female'}", title: "View women&rsquo;s restrooms".html_safe %>
               /
-              <%= link_to "All", set_gender_path(:gender => 'any'), method: :patch, class: "any#{' selected' if @user.gender == 'any'}", title: "View all restrooms, regardless of gender" %>
+              <%= link_to "all", set_gender_path(:gender => 'any'), method: :patch, class: "any#{' selected' if @user.gender == 'any'}", title: "View all restrooms, regardless of gender" %>
             </li>
           <% else %>
-            <li><%= link_to 'Log In', CASClient::Frameworks::Rails::Filter.login_url(controller) %></li>
+            <li><%= link_to 'log in with Case ID', CASClient::Frameworks::Rails::Filter.login_url(controller) %></li>
           <% end %>
         </ul>
       </nav>
