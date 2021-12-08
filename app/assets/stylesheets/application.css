@@ -14,8 +14,6 @@
  *= require_self
  */
 
-@import url(//fonts.googleapis.com/css?family=Titillium+Web:400,700);
-
 html,textarea{font:1em/1.618 "Titillium Web","Helvetica Neue","Arial Unicode MS",Arial,sans-serif}
 html{background:#D7D7D7;color:#3E3F41;font-size:1.125em}
 body{background:#FFF;margin:0;padding:0}
