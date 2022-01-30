@@ -14,7 +14,16 @@
  *= require_self
  */
 
-html,textarea{font:1em/1.618 "Titillium Web","Helvetica Neue","Arial Unicode MS",Arial,sans-serif}
+@font-face {font-family:"Titillium";font-style:normal;font-weight:400;
+    src: url('/fonts/titillium-latin-regular.woff2') format('woff2'),
+         url('/fonts/titillium-latin-regular.woff') format('woff');
+}
+@font-face {font-family:"Titillium";font-style:normal;font-weight:700;
+    src: url('/fonts/titillium-latin-700.woff2') format('woff2'),
+         url('/fonts/titillium-latin-700.woff') format('woff');
+}
+
+html,textarea{font:1em/1.618 "Titillium","Helvetica Neue","Arial Unicode MS",Arial,sans-serif}
 html{background:#D7D7D7;color:#3E3F41;font-size:1.125em}
 body{background:#FFF;margin:0;padding:0}
 
