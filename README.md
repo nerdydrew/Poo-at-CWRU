@@ -8,7 +8,7 @@ This is the source code for [pooatcwru.com](https://pooatcwru.com). I originally
 * Run `bundle install`.
 * Configure the user and databases in `config/database.yml`.
 * Run `rails db:migrate`.
-* Run `rails db:seed:load` to load building and floor info.
+* Run `rails db:seed` to load building and floor info.
 * Run `rails server`.
 * Access the website at `localhost:3000`.
 

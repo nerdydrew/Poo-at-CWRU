@@ -5,6 +5,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -35,7 +36,7 @@ CREATE TYPE public.gender_enum AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
 -- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
@@ -44,8 +45,8 @@ SET default_with_oids = false;
 CREATE TABLE public.ar_internal_metadata (
     key character varying NOT NULL,
     value character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -214,7 +215,7 @@ ALTER SEQUENCE public.toilets_id_seq OWNED BY public.toilets.id;
 
 CREATE TABLE public.users (
     id bigint NOT NULL,
-    case_id character varying,
+    case_id character varying NOT NULL,
     gender public.gender_enum,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
