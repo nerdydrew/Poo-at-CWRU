@@ -54,14 +54,14 @@
 		fetch(url, options)
 			.then(function (r) {return r.text();})
 			.then(function (results) {
-				elementToUpdate.innerHTML = results;
+				elementToUpdate.outerHTML = results;
 			})
       .catch(onError);
 	}
 
 	function onError(error) {
 		if (error.code == 1)
-			var message = "If you don&rsquo;t let us see your location, we can&rsquo;t find a nearby toilet!";
+			var message = "If you don&rsquo;t give us your location, we can&rsquo;t find a nearby restroom!";
 		else {
 			var message = "There was a problem finding your location.";
 		}
