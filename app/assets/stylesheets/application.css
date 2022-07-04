@@ -55,6 +55,8 @@ h1.headline .subtitle{display:block;font-size:.78em;font-weight:400;color:#62626
 
 article,footer section{max-width:35em;margin:0 auto;padding:1em;overflow:hidden}
 
+img{max-width:100%}
+
 dl{overflow:hidden}
 dt{clear:both;float:left;width:6em}
 dt:after{content:":"}

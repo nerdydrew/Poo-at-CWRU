@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     patch 'set_gender'
   end
 
+  get 'about' => "welcome#about"
+
   resources :buildings, only: [:show], param: :slug, path: '' do
     resources :floors, only: [:show], param: :slug, path: '' do
       resources :toilets, only: [:new, :create, :show], param: :slug, path: '' do

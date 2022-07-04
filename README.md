@@ -12,6 +12,11 @@ This is the source code for [pooatcwru.com](https://pooatcwru.com). I originally
 * Run `rails server`.
 * Access the website at `localhost:3000`.
 
-## Acknowledgements
-* Inspiration for this project came from a detailed rating system graffitied onto a bathroom wall in a CWRU building, which has been [saved for posterity on Reddit](https://www.reddit.com/r/cwru/comments/2anjrp/i_poop_in_one_of_the_quad_buildings_every_morning/).
-* Coordinates of CWRU buildings came from [case.edu/maps](https://webapps.case.edu/map/).
+## References
+* Buildings / Restrooms
+	* https://webapps.case.edu/map/
+	* https://case.edu/library/spaces/interactive-map
+	* https://case.edu/lgbt/resources/transgender-resources/bathroom-inventory
+* Central Authentication Service (Single Sign-On)
+	* http://hacsoc.org/wiki/technical/cas.html
+	* https://web.archive.org/web/20121126051658/http://wiki.case.edu/Central_Authentication_Service
