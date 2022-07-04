@@ -1,6 +1,14 @@
 class BuildingsController < ApplicationController
   skip_before_action CASClient::Frameworks::Rails::GatewayFilter, only: :near_me
 
+  def index
+    @buildings_by_letter = Building.all
+      .left_joins(:toilet).group(:id)
+      .select("buildings.*", "COUNT(toilets.id) toilet_count")
+      .sort_by  { | building | building.name.upcase }
+      .group_by { | building | building.name.first.upcase }
+  end
+
   def show
     @building = Building.find_by_slug!(params[:slug])
     @floor = Floor.where(building_id: @building.id, level: 1).take

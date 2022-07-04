@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
 
     collection do
+      get 'all-buildings' => :index, as: :all
       get :near_me
     end
   end
