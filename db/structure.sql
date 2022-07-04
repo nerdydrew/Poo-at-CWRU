@@ -210,38 +210,6 @@ ALTER SEQUENCE public.toilets_id_seq OWNED BY public.toilets.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.users (
-    id bigint NOT NULL,
-    case_id character varying NOT NULL,
-    gender public.gender_enum,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.users_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
-
-
---
 -- Name: buildings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -267,13 +235,6 @@ ALTER TABLE ONLY public.reviews ALTER COLUMN id SET DEFAULT nextval('public.revi
 --
 
 ALTER TABLE ONLY public.toilets ALTER COLUMN id SET DEFAULT nextval('public.toilets_id_seq'::regclass);
-
-
---
--- Name: users id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
@@ -322,14 +283,6 @@ ALTER TABLE ONLY public.schema_migrations
 
 ALTER TABLE ONLY public.toilets
     ADD CONSTRAINT toilets_pkey PRIMARY KEY (id);
-
-
---
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
@@ -410,13 +363,6 @@ CREATE INDEX index_toilets_on_floor_id ON public.toilets USING btree (floor_id);
 
 
 --
--- Name: index_users_on_case_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_users_on_case_id ON public.users USING btree (case_id);
-
-
---
 -- Name: floors fk_rails_ae3c731da8; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -445,6 +391,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181219212741'),
 ('20181220162921'),
 ('20181220192723'),
-('20181224033157');
+('20181224033157'),
+('20220704145907');
 
 

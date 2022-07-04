@@ -1,7 +1,6 @@
 class Toilet < ApplicationRecord
   validates :slug, uniqueness: {:scope => [:building_id, :floor_id]}, length: {maximum: 200}
   validates :gender, presence: true
-  validates :gender, inclusion: { in: User.genders, message: "%{value} is invalid" }
 
   validates :sinks,   numericality: { only_integer: true, greater_than_or_equal_to: 0, allow_nil: true }
   validates :stalls,  numericality: { only_integer: true, greater_than_or_equal_to: 0, allow_nil: true }
@@ -18,6 +17,12 @@ class Toilet < ApplicationRecord
 
   has_many :review
 
+  enum gender: {
+    male: 'male',
+    female: 'female',
+    any: 'any'
+  }
+
   def to_param
     slug
   end
@@ -28,9 +33,9 @@ class Toilet < ApplicationRecord
 
   def gender_html
     span = case self.gender
-    when 'male'
+    when Toilet.genders[:male]
       '<span class="male" title="Male">&#9794;</span>'
-    when 'female'
+    when Toilet.genders[:female]
       '<span class="female" title="Female">&#9792;</span>'
     else
       '<span title="Anyone may use this restroom, regardless of gender.">Any</span>'
@@ -48,31 +53,29 @@ class Toilet < ApplicationRecord
     review.pluck(field)
   end
 
-  def self.get_by_building(user, building_id)
+  def self.get_by_building(gender, building_id)
     query = Toilet.where(building_id: building_id)
-    query = filter_by_gender(user, query)
+    query = filter_by_gender(gender, query)
     query = query.joins(:floor).preload(:floor).order("floors.level")
     query.includes(:review)
   end
 
-  def self.get_by_building_and_floor(user, building_id, floor_id)
+  def self.get_by_building_and_floor(gender, building_id, floor_id)
     query = Toilet.where(building_id: building_id, floor_id: floor_id)
-    query = filter_by_gender(user, query)
+    query = filter_by_gender(gender, query)
     query = query.preload(:floor)
     query.includes(:review)
   end
 
   private
-  def self.filter_by_gender(user, query)
-    if user.present?
-      case user.gender
-        when User.genders[:male]
-          return query.where.not(gender: User.genders[:female])
-        when User.genders[:female]
-          return query.where.not(gender: User.genders[:male])
-        end
+  def self.filter_by_gender(gender, query)
+    case gender
+      when Toilet.genders[:male]
+        return query.where.not(gender: Toilet.genders[:female])
+      when Toilet.genders[:female]
+        return query.where.not(gender: Toilet.genders[:male])
       end
 
-      return query
+    return query
   end
 end

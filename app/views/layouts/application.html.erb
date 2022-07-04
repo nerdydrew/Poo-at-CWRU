@@ -42,7 +42,7 @@
   </head>
 
   <body>
-    <header id="header"<%= ' class="double"'.html_safe if @logged_in %>>
+    <header id="header">
       <nav>
         <h1>
           <%= link_to root_path do %>
@@ -53,16 +53,17 @@
         <ul>
           <% if @logged_in %>
             <li><%= link_to "log out", controller: "application", action: "logout" %></li>
-            <li class="genders">
-              <%= link_to "&#9794;".html_safe, set_gender_path(:gender => 'male'), method: :patch, class: "male#{' selected' if @user.gender == 'male'}", title: "View men&rsquo;s restrooms".html_safe %>
-              /
-              <%= link_to "&#9792;".html_safe, set_gender_path(:gender => 'female'), method: :patch, class: "female#{' selected' if @user.gender == 'female'}", title: "View women&rsquo;s restrooms".html_safe %>
-              /
-              <%= link_to "all", set_gender_path(:gender => 'any'), method: :patch, class: "any#{' selected' if @user.gender == 'any'}", title: "View all restrooms, regardless of gender" %>
-            </li>
           <% else %>
-            <li><%= link_to 'log in with Case ID', CASClient::Frameworks::Rails::Filter.login_url(controller) %></li>
+            <li><%= link_to "log in with Case ID", CASClient::Frameworks::Rails::Filter.login_url(controller) %></li>
           <% end %>
+
+          <li class="genders">
+            <%= link_to "&#9794;".html_safe, set_gender_path(:gender => Toilet.genders[:male]), method: :patch, class: "male#{' selected' if @gender == Toilet.genders[:male]}", title: "View men&rsquo;s restrooms".html_safe %>
+            /
+            <%= link_to "&#9792;".html_safe, set_gender_path(:gender => Toilet.genders[:female]), method: :patch, class: "female#{' selected' if @gender == Toilet.genders[:female]}", title: "View women&rsquo;s restrooms".html_safe %>
+            /
+            <%= link_to "all", set_gender_path(:gender => Toilet.genders[:any]), method: :patch, class: "any#{' selected' if @gender == Toilet.genders[:any]}", title: "View all restrooms, regardless of gender" %>
+          </li>
         </ul>
       </nav>
 

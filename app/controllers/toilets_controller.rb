@@ -11,8 +11,8 @@ class ToiletsController < ApplicationController
     @toilet.floor = floor
 
     @reviews = Review.where(toilet_id: @toilet.id).order(:created_at).reverse
-    if @user.present?
-      @current_users_review = @reviews.find { |review| review.user == @user.case_id }
+    if @case_id
+      @current_users_review = @reviews.find { |review| review.user == @case_id }
     end
   end
 
@@ -29,7 +29,7 @@ class ToiletsController < ApplicationController
     @toilet = Toilet.new(toilet_params)
 
     @toilet.slug = @toilet.name.parameterize
-    @toilet.creator = session[:cas_user]
+    @toilet.creator = @case_id
 
     if @toilet.save
       redirect_to [@toilet.building, @toilet.floor, @toilet], notice: 'Restroom was successfully created.'

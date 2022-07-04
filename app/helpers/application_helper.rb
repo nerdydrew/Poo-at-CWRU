@@ -1,7 +1,7 @@
 module ApplicationHelper
   
   def print_distance_and_bearing(resource)
-  	print_distance(resource.distance) + " " + print_bearing(resource.bearing)
+    print_distance(resource.distance) + " " + print_bearing(resource.bearing)
   end
 
   def print_distance(distance_miles)

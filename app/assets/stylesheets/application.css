@@ -38,20 +38,15 @@ p,section{margin:.809em 0;padding:0}
 header{background:#0A304E;color:#AAA}
 header a{color:#C6D4E3;text-decoration:none}
 header a:hover{color:#FFF;text-decoration:none}
-header nav{margin:0 auto;max-width:35em;padding:2em 1em;overflow:auto}
-header h1{margin:0;float:left;font-variant:small-caps}
+header nav{margin:0 auto;max-width:35em;padding:1em;overflow:auto}
+header h1{margin:.75em 0 0;float:left;font-variant:small-caps}
 header img{height:1.5em;width:auto;padding-right:.5em;vertical-align:text-bottom}
-header nav ul{margin:0;padding:.4em 0 0;list-style:none;text-align:right;font-size:1.125em}
+header nav ul{margin:0;padding:0;list-style:none;text-align:right;font-size:1.125em;line-height:2}
 header nav ul li{display:inline;margin:0 .5em}
-header nav ul li a{padding:.25em}
-
-header.double nav ul{padding-top:0;line-height:2}
-header.double nav{padding:1em}
-header.double h1{margin-top:.75em}
-header.double a{padding-top:0;padding-bottom:0}
+header nav ul li a{padding:0 .25em}
 
 header .genders{display:block}
-header .selected{background:#0A7;-webkit-border-radius:1em;-moz-border-radius:1em;border-radius:1em;color:#FFF}
+header .selected{background:#0A7;border-radius:1em;color:#FFF}
 header .male.selected{background:skyblue;color:#0A304E}
 header .female.selected{background:pink;color:#0A304E}
 

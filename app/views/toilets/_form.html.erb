@@ -27,7 +27,7 @@
 
   <dl>
     <dt><%= form.label :gender %></dt>
-    <%= form.collection_radio_buttons :gender, User.genders, :second, :first do |gender| %>
+    <%= form.collection_radio_buttons :gender, Toilet.genders, :second, :first do |gender| %>
       <dd><%= gender.label { gender.radio_button(required: true) + " " + gender.text.capitalize } %></dd>
     <% end %>
   </dl>
@@ -59,7 +59,7 @@
 <script>
   function showOrHideUrinals() {
     var selectedGender = document.querySelector('input[name="toilet[gender]"]:checked');
-    var mayHaveUrinal = selectedGender == null || selectedGender.value == "male";
+    var mayHaveUrinal = selectedGender == null || selectedGender.value != "female";
     document.getElementById("urinalContainer").style.display = mayHaveUrinal ? 'block' : 'none';
   }
 

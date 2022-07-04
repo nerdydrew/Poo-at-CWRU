@@ -28,7 +28,7 @@
   <dl>
     <dt>Gender</dt><dd><%= @toilet.gender_html %></dd>
     <dt>Sinks</dt><dd><%= @toilet.sinks.presence || "?" %></dd>
-    <% if @toilet.gender == User.genders[:male] %>
+    <% if @toilet.gender == Toilet.genders[:male] %>
       <dt>Urinals</dt><dd><%= @toilet.urinals.presence || "?" %></dd>
     <% end %>
     <dt>Stalls</dt><dd><%= @toilet.stalls.presence || "?" %></dd>
@@ -41,7 +41,7 @@
 <%= content_tag :p, "Special comments: " + @toilet.comments if @toilet.comments.present? %>
 
 <% @reviews.each do |review| %>
-  <blockquote<%= ' class="yourComment"'.html_safe if @user.present? and review.user == @user.case_id %>>
+  <blockquote<%= ' class="yourComment"'.html_safe if review.user == @case_id %>>
     <p><%= review.comments %></p>
     <%= content_tag :cite, review.created_at.strftime("%B %d, %Y"),
       title: "Created on #{ review.created_at.to_s } #{ 'and last updated ' + review.updated_at.to_s unless review.updated_at == review.created_at }" %>

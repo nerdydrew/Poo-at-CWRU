@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
     set_toilet
 
     @review = Review.new(review_params)
-    @review.user = @user.case_id
+    @review.user = @case_id
     @review.toilet_id = @toilet.id
 
     if @review.save
@@ -59,7 +59,7 @@ class ReviewsController < ApplicationController
     end
 
     def authorize_user
-      unless @review.user == @user.case_id
+      unless @review.user == @case_id
         redirect_back(fallback_location: root_path, flash: { error: "You can't edit someone else's review." } ) and return
       end
     end
