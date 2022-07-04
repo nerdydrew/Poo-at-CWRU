@@ -73,7 +73,7 @@ blockquote cite{color:#67696C;text-align:right;display:block}
 blockquote cite:before{content:"\2013"}
 blockquote.yourComment cite:before{content:"\2013you on "}
 
-table{width:100%;border-collapse:collapse}
+table{width:100%;border-collapse:collapse;margin:1em 0}
 thead th{font-weight:400;background:#0A304E;color:#FFF;font-size:.9em;text-align:left;padding:.25em .56em}
 tbody tr{background:#EEE;border-bottom:.125em solid #FFF;}
 tbody tr:hover{background:#DDD}
