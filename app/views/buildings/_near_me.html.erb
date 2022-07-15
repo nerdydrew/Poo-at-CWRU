@@ -23,8 +23,6 @@
 <script>
 	var elementToUpdate = document.getElementById("geolocation");
 
-	// On load (unless we've already searched), request geolocation and start searching.
-	<%= "window.onload = getNearbyBuildings;" if buildings.nil? %>
 	function getNearbyBuildings() {
 		if ("geolocation" in navigator) {
 			elementToUpdate.innerHTML="<p class=\"loading\">Trying to get location&hellip;</p>";
@@ -33,6 +31,10 @@
 			elementToUpdate.innerHTML = "<p class=\"warning\">Your browser may not support geolocation.</p>";
 		}
 	}
+	<% if buildings.nil? %>
+		// On first load, request geolocation and start searching.
+		window.addEventListener("DOMContentLoaded", getNearbyBuildings);
+	<% end %>
 
 	// Takes in a coordinate position and uses AJAX.
 	function findNearPosition(position) {
@@ -56,7 +58,7 @@
 			.then(function (results) {
 				elementToUpdate.outerHTML = results;
 			})
-      .catch(onError);
+			.catch(onError);
 	}
 
 	function onError(error) {
