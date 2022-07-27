@@ -33,7 +33,7 @@
 	}
 	<% if buildings.nil? %>
 		// On first load, request geolocation and start searching.
-		window.addEventListener("DOMContentLoaded", getNearbyBuildings);
+		getNearbyBuildings();
 	<% end %>
 
 	// Takes in a coordinate position and uses AJAX.
