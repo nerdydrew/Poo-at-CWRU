@@ -21,31 +21,30 @@
 
 
 <script>
-	var elementToUpdate = document.getElementById("geolocation");
+	const elementToUpdate = document.getElementById("geolocation");
 
 	function getNearbyBuildings() {
 		if ("geolocation" in navigator) {
 			elementToUpdate.innerHTML="<p class=\"loading\">Trying to get location&hellip;</p>";
-			navigator.geolocation.getCurrentPosition(findNearPosition, onError, {maximumAge: 30000});
+			navigator.geolocation.getCurrentPosition(findNearPosition, onError, {
+				maximumAge: 30000,
+				timeout: 10000
+			});
 		} else {
 			elementToUpdate.innerHTML = "<p class=\"warning\">Your browser may not support geolocation.</p>";
 		}
 	}
-	<% if buildings.nil? %>
-		// On first load, request geolocation and start searching.
-		getNearbyBuildings();
-	<% end %>
 
 	// Takes in a coordinate position and uses AJAX.
 	function findNearPosition(position) {
 		elementToUpdate.innerHTML = "<p class=\"loading\">Location found. Determining nearest toilets&hellip;</p>";
 
-		var latitude = position.coords.latitude;
-		var longitude = position.coords.longitude;
-		var url = "<%= escape_javascript(near_me_buildings_path) %>?latitude=" + latitude + "&longitude=" + longitude;
+		const latitude = position.coords.latitude;
+		const longitude = position.coords.longitude;
+		const url = "<%= escape_javascript(near_me_buildings_path) %>?latitude=" + latitude + "&longitude=" + longitude;
 
 		// Pass in authenticity token so the AJAX doesn't get blocked.
-		var options = {
+		const options = {
 			headers: {
 				"X-Requested-With": "XMLHttpRequest",
 				"X-CSRF-Token": "<%= form_authenticity_token %>"
@@ -62,11 +61,18 @@
 	}
 
 	function onError(error) {
-		if (error.code == 1)
-			var message = "If you don&rsquo;t give us your location, we can&rsquo;t find a nearby restroom!";
-		else {
-			var message = "There was a problem finding your location.";
+		console.error(error);
+		let message;
+		if (error.code == 1) {
+			message = "If you don&rsquo;t give us your location, we can&rsquo;t find a nearby restroom!";
+		} else {
+			message = "There was a problem finding your location.";
 		}
 		elementToUpdate.innerHTML = "<p class=\"warning\">" + message + "</p>";
 	}
+
+	<% if buildings.nil? %>
+		// On first load, request geolocation and start searching.
+		getNearbyBuildings();
+	<% end %>
 </script>
