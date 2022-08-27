@@ -2,11 +2,15 @@
 
 <h1>All Buildings</h1>
 
-<% @buildings_by_letter.each_pair do |letter, buildings| %>
-	<h2><%= letter %></h2>
-	<ul>
-		<% buildings.each do |building| %>
-			<li><%= link_to building.name, building %> (<%= building.toilet_count %> restrooms)</li>
-		<% end %>
-	</ul>
-<% end %>
+<dl class="alphabet">
+	<% @buildings_by_letter.each_pair do |letter, buildings| %>
+		<dt><%= letter %></dt>
+		<dd>
+			<ul>
+				<% buildings.each do |building| %>
+					<li><%= link_to building.name, building %> (<%= pluralize(building.toilet_count, "restroom") %>)</li>
+				<% end %>
+			</ul>
+		</dd>
+	<% end %>
+</dl>
