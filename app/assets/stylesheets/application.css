@@ -72,11 +72,11 @@ input[type="number"]{width:3em}
 textarea{width:95%;height:6em}
 
 blockquote{background:#F2F2F2;margin:0 0 1.618em 0;padding:1em;border-radius:.25em}
-blockquote.yourComment{border-left:.25em solid goldenrod}
+blockquote.you{border-left:.25em solid goldenrod}
 blockquote p{margin:0}
 blockquote cite{color:#67696C;text-align:right;display:block}
 blockquote cite:before{content:"\2013"}
-blockquote.yourComment cite:before{content:"\2013you on "}
+blockquote.you cite:before{content:"\2013you on "}
 
 table{width:100%;border-collapse:collapse;margin:1em 0}
 thead th{font-weight:400;background:#0A304E;color:#FFF;font-size:.9em;text-align:left;padding:.25em .56em}
