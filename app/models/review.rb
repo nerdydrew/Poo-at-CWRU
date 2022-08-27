@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
-  validates :user, presence: true, uniqueness: {:scope => :toilet_id, message: "has already reviewed this restroom"}
-  validates :toilet, presence: true
+  validates :user, presence: true, uniqueness: {:scope => :restroom_id, message: "has already reviewed this restroom"}
+  validates :restroom, presence: true
 
   validates :cleanliness,  numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5, allow_nil: true }
   validates :location,     numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5, allow_nil: true }
@@ -12,5 +12,5 @@ class Review < ApplicationRecord
 
   validates_length_of :comments, maximum: 5000, allow_blank: false
 
-  belongs_to :toilet
+  belongs_to :restroom
 end

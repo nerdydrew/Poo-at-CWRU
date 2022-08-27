@@ -1,0 +1,29 @@
+<% if @restrooms.present? %>
+  <table>
+    <thead>
+      <tr>
+        <%= content_tag :th, "Floor", class: "optional" if @display_floors %>
+        <th class="optional">Gender</th>
+        <th class="optional">Rating</th>
+        <th>Restroom Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @restrooms.each do |restroom| %>
+        <tr>
+          <%= content_tag :td, link_to(restroom.floor.pretty_short_name, building_floor_restroom_path(@building, restroom.floor, restroom)) if @display_floors %>
+          <td><%= link_to restroom.gender_html, building_floor_restroom_path(@building, restroom.floor, restroom) %></td>
+          <td><%= link_to rating_stars_html(restroom.get_ratings(:overall)), building_floor_restroom_path(@building, restroom.floor, restroom) %></td>
+          <td><%= link_to restroom.name, building_floor_restroom_path(@building, restroom.floor, restroom) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p>Am I missing a restroom? Please <%= link_to "add it here", new_building_floor_restroom_path(@building, @floor) %>.</p>
+
+<% else %>
+  <p>I don&rsquo;t know of any restrooms here! Would you like to <%= link_to "add a restroom", new_building_floor_restroom_path(@building, @floor) %>?</p>
+<% end %>
+
+<%= render "buildings/near_me", buildings: @building.nearbys.limit(4) %>

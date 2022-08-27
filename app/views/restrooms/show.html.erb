@@ -1,0 +1,49 @@
+<% provide(:title, @restroom.to_breadcrumb) %>
+
+<h1>
+  <%= link_to @restroom.building.name, @restroom.building %>
+  &gt;
+  <%= link_to @restroom.floor.pretty_name, [@restroom.building, @restroom.floor] %>
+  &gt;
+  <%= @restroom.name %>
+</h1>
+
+<% if @current_users_review.present? %>
+  <p>Would you like to <%= link_to 'update your review', edit_building_floor_restroom_review_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug, @current_users_review) %> or <%= link_to 'delete it', building_floor_restroom_review_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug, @current_users_review), method: :delete, data: { confirm: 'Are you sure you want to delete your review?' } %>?</p>
+<% else %>
+  <p>Would you like to <%= link_to "add a review", new_building_floor_restroom_review_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug) %>?</p>
+<% end %>
+
+
+<section class="left">
+  <dl>
+    <% [:cleanliness, :location, :wifi, :writing, :traffic, :toilet_paper, :overall].each do |field| %>
+      <dt><%= field.to_s.humanize %></dt>
+      <dd><%= rating_stars_html_by_field(@reviews, field) %></dd>
+    <% end %>
+  </dl>
+</section>
+
+<section class="right">
+  <dl>
+    <dt>Gender</dt><dd><%= @restroom.gender_html %></dd>
+    <dt>Sinks</dt><dd><%= @restroom.sinks.presence || "?" %></dd>
+    <% if @restroom.gender == Restroom.genders[:male] %>
+      <dt>Urinals</dt><dd><%= @restroom.urinals.presence || "?" %></dd>
+    <% end %>
+    <dt>Stalls</dt><dd><%= @restroom.stalls.presence || "?" %></dd>
+    <dt>Reviews</dt><dd><%= @reviews.size %></dd>
+  </dl>
+</section>
+
+<div style="clear:both"></div>
+
+<%= content_tag :p, "Special comments: " + @restroom.comments if @restroom.comments.present? %>
+
+<% @reviews.each do |review| %>
+  <blockquote<%= ' class="you"'.html_safe if review.user == @case_id %>>
+    <p><%= review.comments %></p>
+    <%= content_tag :cite, review.created_at.strftime("%B %d, %Y"),
+      title: "Created on #{ review.created_at.to_s } #{ 'and last updated ' + review.updated_at.to_s unless review.updated_at == review.created_at }" %>
+  </blockquote>
+<% end %>

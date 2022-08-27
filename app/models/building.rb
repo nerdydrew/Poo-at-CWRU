@@ -2,7 +2,7 @@ class Building < ApplicationRecord
   reverse_geocoded_by :latitude, :longitude
 
   has_many :floor
-  has_many :toilet
+  has_many :restroom
 
   def to_param
     slug

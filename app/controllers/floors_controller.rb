@@ -5,7 +5,7 @@ class FloorsController < ApplicationController
     @floor = Floor.find_by!(building_id: @building.id, slug: params[:slug])
     @floor.building = @building
 
-    @toilets = Toilet.get_by_building_and_floor(@gender, @building.id, @floor.id)
+    @restrooms = Restroom.get_by_building_and_floor(@gender, @building.id, @floor.id)
   end
 
   private

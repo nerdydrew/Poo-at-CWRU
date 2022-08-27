@@ -5,25 +5,25 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
-    set_toilet
+    set_restroom
     @review = Review.new
   end
 
   # GET /reviews/1/edit
   def edit
-    set_toilet
+    set_restroom
   end
 
   # POST /reviews
   def create
-    set_toilet
+    set_restroom
 
     @review = Review.new(review_params)
     @review.user = @case_id
-    @review.toilet_id = @toilet.id
+    @review.restroom_id = @restroom.id
 
     if @review.save
-      redirect_to building_floor_toilet_path(@toilet.building.slug, @toilet.floor.slug, @toilet.slug), notice: 'Review was successfully created.'
+      redirect_to building_floor_restroom_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug), notice: 'Review was successfully created.'
     else
       render :new
     end
@@ -32,9 +32,9 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1
   def update
     if @review.update(review_params)
-      redirect_to building_floor_toilet_path(params[:building_slug], params[:floor_slug], params[:toilet_slug]), notice: 'Review was successfully updated.'
+      redirect_to building_floor_restroom_path(params[:building_slug], params[:floor_slug], params[:restroom_slug]), notice: 'Review was successfully updated.'
     else
-      set_toilet
+      set_restroom
       render :edit
     end
   end
@@ -42,7 +42,7 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   def destroy
     @review.destroy
-    redirect_to building_floor_toilet_path(params[:building_slug], params[:floor_slug], params[:toilet_slug]), notice: 'Review was successfully deleted.'
+    redirect_to building_floor_restroom_path(params[:building_slug], params[:floor_slug], params[:restroom_slug]), notice: 'Review was successfully deleted.'
   end
 
   private
@@ -50,12 +50,12 @@ class ReviewsController < ApplicationController
       @review = Review.find(params[:id])
     end
 
-    def set_toilet
+    def set_restroom
       building = Building.find_by_slug!(params[:building_slug])
       floor = Floor.find_by!(building_id: building.id, slug: params[:floor_slug])
-      @toilet = Toilet.find_by!(building_id: building.id, floor_id: floor.id, slug: params[:toilet_slug])
-      @toilet.building = building
-      @toilet.floor = floor
+      @restroom = Restroom.find_by!(building_id: building.id, floor_id: floor.id, slug: params[:restroom_slug])
+      @restroom.building = building
+      @restroom.floor = floor
     end
 
     def authorize_user
@@ -65,6 +65,6 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-      params.require(:review).permit(:toilet_id, :cleanliness, :location, :wifi, :writing, :traffic, :toilet_paper, :overall, :comments)
+      params.require(:review).permit(:restroom_id, :cleanliness, :location, :wifi, :writing, :traffic, :toilet_paper, :overall, :comments)
     end
 end

@@ -121,12 +121,52 @@ ALTER SEQUENCE public.floors_id_seq OWNED BY public.floors.id;
 
 
 --
+-- Name: restrooms; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.restrooms (
+    id bigint NOT NULL,
+    name text NOT NULL,
+    slug text NOT NULL,
+    gender public.gender_enum NOT NULL,
+    building_id bigint NOT NULL,
+    floor_id bigint NOT NULL,
+    stalls integer,
+    urinals integer,
+    sinks integer,
+    comments text,
+    creator text NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: restrooms_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.restrooms_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: restrooms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.restrooms_id_seq OWNED BY public.restrooms.id;
+
+
+--
 -- Name: reviews; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.reviews (
     id bigint NOT NULL,
-    toilet_id bigint,
+    restroom_id bigint,
     "user" character varying NOT NULL,
     cleanliness integer,
     location integer,
@@ -170,46 +210,6 @@ CREATE TABLE public.schema_migrations (
 
 
 --
--- Name: toilets; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.toilets (
-    id bigint NOT NULL,
-    name text NOT NULL,
-    slug text NOT NULL,
-    gender public.gender_enum NOT NULL,
-    building_id bigint NOT NULL,
-    floor_id bigint NOT NULL,
-    stalls integer,
-    urinals integer,
-    sinks integer,
-    comments text,
-    creator text NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: toilets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.toilets_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: toilets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.toilets_id_seq OWNED BY public.toilets.id;
-
-
---
 -- Name: buildings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -224,17 +224,17 @@ ALTER TABLE ONLY public.floors ALTER COLUMN id SET DEFAULT nextval('public.floor
 
 
 --
+-- Name: restrooms id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.restrooms ALTER COLUMN id SET DEFAULT nextval('public.restrooms_id_seq'::regclass);
+
+
+--
 -- Name: reviews id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.reviews ALTER COLUMN id SET DEFAULT nextval('public.reviews_id_seq'::regclass);
-
-
---
--- Name: toilets id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.toilets ALTER COLUMN id SET DEFAULT nextval('public.toilets_id_seq'::regclass);
 
 
 --
@@ -262,6 +262,14 @@ ALTER TABLE ONLY public.floors
 
 
 --
+-- Name: restrooms restrooms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.restrooms
+    ADD CONSTRAINT restrooms_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: reviews reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -275,14 +283,6 @@ ALTER TABLE ONLY public.reviews
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
-
-
---
--- Name: toilets toilets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.toilets
-    ADD CONSTRAINT toilets_pkey PRIMARY KEY (id);
 
 
 --
@@ -321,45 +321,45 @@ CREATE UNIQUE INDEX index_floors_on_building_id_and_slug ON public.floors USING 
 
 
 --
--- Name: index_reviews_on_toilet_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_restrooms_on_building_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_reviews_on_toilet_id ON public.reviews USING btree (toilet_id);
-
-
---
--- Name: index_reviews_on_toilet_id_and_user; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_reviews_on_toilet_id_and_user ON public.reviews USING btree (toilet_id, "user");
+CREATE INDEX index_restrooms_on_building_id ON public.restrooms USING btree (building_id);
 
 
 --
--- Name: index_toilets_on_building_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_restrooms_on_building_id_and_floor_id_and_name; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_toilets_on_building_id ON public.toilets USING btree (building_id);
-
-
---
--- Name: index_toilets_on_building_id_and_floor_id_and_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_toilets_on_building_id_and_floor_id_and_name ON public.toilets USING btree (building_id, floor_id, name);
+CREATE UNIQUE INDEX index_restrooms_on_building_id_and_floor_id_and_name ON public.restrooms USING btree (building_id, floor_id, name);
 
 
 --
--- Name: index_toilets_on_building_id_and_floor_id_and_slug; Type: INDEX; Schema: public; Owner: -
+-- Name: index_restrooms_on_building_id_and_floor_id_and_slug; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_toilets_on_building_id_and_floor_id_and_slug ON public.toilets USING btree (building_id, floor_id, slug);
+CREATE UNIQUE INDEX index_restrooms_on_building_id_and_floor_id_and_slug ON public.restrooms USING btree (building_id, floor_id, slug);
 
 
 --
--- Name: index_toilets_on_floor_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_restrooms_on_floor_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_toilets_on_floor_id ON public.toilets USING btree (floor_id);
+CREATE INDEX index_restrooms_on_floor_id ON public.restrooms USING btree (floor_id);
+
+
+--
+-- Name: index_reviews_on_restroom_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reviews_on_restroom_id ON public.reviews USING btree (restroom_id);
+
+
+--
+-- Name: index_reviews_on_restroom_id_and_user; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_reviews_on_restroom_id_and_user ON public.reviews USING btree (restroom_id, "user");
 
 
 --
@@ -375,7 +375,7 @@ ALTER TABLE ONLY public.floors
 --
 
 ALTER TABLE ONLY public.reviews
-    ADD CONSTRAINT fk_rails_ea6bcaa95e FOREIGN KEY (toilet_id) REFERENCES public.toilets(id);
+    ADD CONSTRAINT fk_rails_ea6bcaa95e FOREIGN KEY (restroom_id) REFERENCES public.restrooms(id);
 
 
 --
@@ -392,6 +392,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181220162921'),
 ('20181220192723'),
 ('20181224033157'),
-('20220704145907');
+('20220704145907'),
+('20220827161055');
 
 

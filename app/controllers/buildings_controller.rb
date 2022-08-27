@@ -3,8 +3,8 @@ class BuildingsController < ApplicationController
 
   def index
     @buildings_by_letter = Building.all
-      .left_joins(:toilet).group(:id)
-      .select("buildings.*", "COUNT(toilets.id) toilet_count")
+      .left_joins(:restroom).group(:id)
+      .select("buildings.*", "COUNT(restrooms.id) restroom_count")
       .sort_by  { | building | building.name.upcase }
       .group_by { | building | building.name.first.upcase }
   end
@@ -13,7 +13,7 @@ class BuildingsController < ApplicationController
     @building = Building.find_by_slug!(params[:slug])
     @floor = Floor.where(building_id: @building.id, level: 1).take
 
-    @toilets = Toilet.get_by_building(@gender, @building.id)
+    @restrooms = Restroom.get_by_building(@gender, @building.id)
     @display_floors = true
   end
 

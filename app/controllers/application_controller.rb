@@ -9,12 +9,12 @@ class ApplicationController < ActionController::Base
       @case_id = session[:cas_user]
     end
 
-    @gender = cookies[:gender] || Toilet.genders[:any]
+    @gender = cookies[:gender] || Restroom.genders[:any]
   end
 
   def set_gender
     gender = params.require(:gender)
-    if gender == Toilet.genders[:male] || gender == Toilet.genders[:female]
+    if gender == Restroom.genders[:male] || gender == Restroom.genders[:female]
       cookies[:gender] = gender
     else
       cookies.delete :gender

@@ -8,7 +8,7 @@
 		<dd>
 			<ul>
 				<% buildings.each do |building| %>
-					<li><%= link_to building.name, building %> (<%= pluralize(building.toilet_count, "restroom") %>)</li>
+					<li><%= link_to building.name, building %> (<%= pluralize(building.restroom_count, "restroom") %>)</li>
 				<% end %>
 			</ul>
 		</dd>

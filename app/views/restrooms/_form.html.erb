@@ -1,10 +1,10 @@
-<%= form_with(model: toilet, url: building_floor_toilets_path, local: true) do |form| %>
-  <% if toilet.errors.any? %>
+<%= form_with(model: restroom, url: building_floor_restrooms_path, local: true) do |form| %>
+  <% if restroom.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(toilet.errors.count, "error") %> prohibited this restroom from being saved:</h2>
+      <h2><%= pluralize(restroom.errors.count, "error") %> prohibited this restroom from being saved:</h2>
 
       <ul>
-      <% toilet.errors.full_messages.each do |message| %>
+      <% restroom.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,22 +12,22 @@
   <% end %>
 
   <dl>
-    <dt><%= form.label :building_id, class: "#{'field_with_errors' if @toilet.errors[:building].present? }" %></dt>
+    <dt><%= form.label :building_id, class: "#{'field_with_errors' if @restroom.errors[:building].present? }" %></dt>
     <dd><%= form.collection_select :building_id, @buildings, :id, :name, selected: @building_id %>
 
-    <dt><%= form.label :floor_id, class: "#{'field_with_errors' if @toilet.errors[:floor].present? }" %></dt>
+    <dt><%= form.label :floor_id, class: "#{'field_with_errors' if @restroom.errors[:floor].present? }" %></dt>
     <dd><%= form.grouped_collection_select :floor_id, @buildings, :floor, :name, :id, :pretty_name, selected: @floor_id %></dd>
 
-    <dt><%= form.label :name, class: "#{'field_with_errors' if @toilet.errors[:slug].present? }" %></dt>
+    <dt><%= form.label :name, class: "#{'field_with_errors' if @restroom.errors[:slug].present? }" %></dt>
     <dd>
-      <%= form.text_field :name, required: true, class: "#{'field_with_errors' if @toilet.errors[:slug].present? }" %>
+      <%= form.text_field :name, required: true, class: "#{'field_with_errors' if @restroom.errors[:slug].present? }" %>
       <span class="minor">e.g. &ldquo;Across from room 223&rdquo; or &ldquo;Near the stairs&rdquo;</span>
     </dd>
   </dl>
 
   <dl>
     <dt><%= form.label :gender %></dt>
-    <%= form.collection_radio_buttons :gender, Toilet.genders, :second, :first do |gender| %>
+    <%= form.collection_radio_buttons :gender, Restroom.genders, :second, :first do |gender| %>
       <dd><%= gender.label { gender.radio_button(required: true) + " " + gender.text.capitalize } %></dd>
     <% end %>
   </dl>
@@ -58,14 +58,14 @@
 
 <script>
   function showOrHideUrinals() {
-    var selectedGender = document.querySelector('input[name="toilet[gender]"]:checked');
+    var selectedGender = document.querySelector('input[name="restroom[gender]"]:checked');
     var mayHaveUrinal = selectedGender == null || selectedGender.value != "female";
     document.getElementById("urinalContainer").style.display = mayHaveUrinal ? 'block' : 'none';
   }
 
 
   function filterFloors() {
-    var selectedBuilding = document.getElementById("toilet_building_id");
+    var selectedBuilding = document.getElementById("restroom_building_id");
     if (selectedBuilding == null) {
       return;
     }
@@ -78,7 +78,7 @@
   }
 
   window.onload=function() {
-    var genders = document.getElementsByName("toilet[gender]");
+    var genders = document.getElementsByName("restroom[gender]");
     for (var i=0; i<genders.length; i++) {
       genders[i].addEventListener('change', showOrHideUrinals);
     }
@@ -86,14 +86,14 @@
     showOrHideUrinals();
 
     // Map optgroups of floors by building name.
-    floorDropdown = document.getElementById("toilet_floor_id");
+    floorDropdown = document.getElementById("restroom_floor_id");
     floorsByBuilding = {};
     for (var i=0; i<floorDropdown.children.length; i++) {
       var buildingName = floorDropdown.children[i].label;
       floorsByBuilding[buildingName] = floorDropdown.children[i].cloneNode(true);
     }
 
-    document.getElementById("toilet_building_id").addEventListener('change', filterFloors);
+    document.getElementById("restroom_building_id").addEventListener('change', filterFloors);
     filterFloors();
     // Need to reselect the floor after filtering by current building.
     floorDropdown.value = <%= @floor_id %>;

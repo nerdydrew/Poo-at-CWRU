@@ -4,7 +4,7 @@ class Floor < ApplicationRecord
   validates :level, uniqueness: {scope: :building_id}
 
   belongs_to :building
-  has_many :toilet
+  has_many :restroom
 
   def to_param
     slug

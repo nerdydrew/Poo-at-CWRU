@@ -1,4 +1,4 @@
-class Toilet < ApplicationRecord
+class Restroom < ApplicationRecord
   validates :slug, uniqueness: {:scope => [:building_id, :floor_id]}, length: {maximum: 200}
   validates :gender, presence: true
 
@@ -33,9 +33,9 @@ class Toilet < ApplicationRecord
 
   def gender_html
     span = case self.gender
-    when Toilet.genders[:male]
+    when Restroom.genders[:male]
       '<span class="male" title="Male">&#9794;</span>'
-    when Toilet.genders[:female]
+    when Restroom.genders[:female]
       '<span class="female" title="Female">&#9792;</span>'
     else
       '<span title="Anyone may use this restroom, regardless of gender.">Any</span>'
@@ -54,14 +54,14 @@ class Toilet < ApplicationRecord
   end
 
   def self.get_by_building(gender, building_id)
-    query = Toilet.where(building_id: building_id)
+    query = Restroom.where(building_id: building_id)
     query = filter_by_gender(gender, query)
     query = query.joins(:floor).preload(:floor).order("floors.level")
     query.includes(:review)
   end
 
   def self.get_by_building_and_floor(gender, building_id, floor_id)
-    query = Toilet.where(building_id: building_id, floor_id: floor_id)
+    query = Restroom.where(building_id: building_id, floor_id: floor_id)
     query = filter_by_gender(gender, query)
     query = query.preload(:floor)
     query.includes(:review)
@@ -70,10 +70,10 @@ class Toilet < ApplicationRecord
   private
   def self.filter_by_gender(gender, query)
     case gender
-      when Toilet.genders[:male]
-        return query.where.not(gender: Toilet.genders[:female])
-      when Toilet.genders[:female]
-        return query.where.not(gender: Toilet.genders[:male])
+      when Restroom.genders[:male]
+        return query.where.not(gender: Restroom.genders[:female])
+      when Restroom.genders[:female]
+        return query.where.not(gender: Restroom.genders[:male])
       end
 
     return query
