@@ -33,8 +33,15 @@
 
 <%= content_tag :p, "Special comments: " + @restroom.comments if @restroom.comments.present? %>
 
-<% if @case_id == @restroom.creator && @reviews.empty? %>
-  <p class="delete"><%= link_to 'Delete this restroom', building_floor_restroom_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug), method: :delete, data: { confirm: 'Are you sure you want to delete this restroom?' }, class: "delete" %></p>
+<% if @case_id == @restroom.creator %>
+  <p>
+    <%= link_to 'Update restroom', edit_building_floor_restroom_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug) %>
+
+    <% if @reviews.empty? %>
+      &middot;
+      <%= link_to 'delete restroom', building_floor_restroom_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug), method: :delete, data: { confirm: 'Are you sure you want to delete this restroom?' }, class: "delete" %>
+    <% end %>
+  </p>
 <% end %>
 
 <% if @current_users_review.present? %>

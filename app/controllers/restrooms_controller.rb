@@ -1,7 +1,7 @@
 class RestroomsController < ApplicationController
   before_action CASClient::Frameworks::Rails::Filter, except: :show
-  before_action :set_restroom, only: [:show, :destroy]
-  before_action :authorize_user, only: [:destroy]
+  before_action :set_restroom, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
 
   def show
     @reviews = Review.where(restroom_id: @restroom.id).order(:created_at).reverse
@@ -11,11 +11,7 @@ class RestroomsController < ApplicationController
   end
 
   def new
-    @buildings = Building.all.eager_load(:floor).sort
-
-    @building_id = Building.where(slug: params[:building_slug]).limit(1).pluck(:id)
-    @floor_id = Floor.where(building_id: @building_id, slug: params[:floor_slug]).limit(1).pluck(:id)
-
+    set_building
     @restroom = Restroom.new
   end
 
@@ -28,11 +24,21 @@ class RestroomsController < ApplicationController
     if @restroom.save
       redirect_to [@restroom.building, @restroom.floor, @restroom], notice: 'Restroom was successfully created.'
     else
-      @buildings = Building.all.eager_load(:floor).sort
-      @building_id = restroom_params[:building_id]
-      @floor_id = restroom_params[:floor_id]
-
+      set_building
       render :new
+    end
+  end
+
+  def edit
+    set_building
+  end
+
+  def update
+    if @restroom.update(restroom_params)
+      redirect_to [@restroom.building, @restroom.floor, @restroom], notice: 'Restroom was successfully updated.'
+    else
+      set_building
+      render :edit
     end
   end
 
@@ -42,6 +48,17 @@ class RestroomsController < ApplicationController
   end
 
   private
+    def set_building
+      @buildings = Building.all.eager_load(:floor).sort
+      if params.has_key?(:restroom)
+        @building_id = restroom_params[:building_id]
+        @floor_id = restroom_params[:floor_id]
+      else
+        @building_id = Building.where(slug: params[:building_slug]).limit(1).pluck(:id)
+        @floor_id = Floor.where(building_id: @building_id, slug: params[:floor_slug]).limit(1).pluck(:id)
+      end
+    end
+
     def set_restroom
       building = Building.find_by_slug!(params[:building_slug])
       floor = Floor.find_by!(building_id: building.id, slug: params[:floor_slug])

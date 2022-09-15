@@ -1,4 +1,4 @@
-<%= form_with(model: restroom, url: building_floor_restrooms_path, local: true) do |form| %>
+<%= form_with(model: restroom, url: url, local: true) do |form| %>
   <% if restroom.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(restroom.errors.count, "error") %> prohibited this restroom from being saved:</h2>

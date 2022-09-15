@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :buildings, only: [:show], param: :slug, path: '' do
     resources :floors, only: [:show], param: :slug, path: '' do
-      resources :restrooms, only: [:new, :create, :show, :destroy], param: :slug, path: '' do
+      resources :restrooms, only: [:new, :create, :show, :edit, :update, :destroy], param: :slug, path: '' do
         resources :reviews, only: [:new, :create, :edit, :update, :destroy]
       end
     end
