@@ -30,6 +30,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_timezone
-    Time.zone = "America/Chicago"
+    Time.zone = "America/New_York"
   end
 end
