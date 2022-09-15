@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action CASClient::Frameworks::Rails::GatewayFilter, :except => [ :set_gender ]
   before_action :check_login
+  before_action :set_timezone
 
   def check_login
     @logged_in = session[:cas_user].present?
@@ -26,5 +27,9 @@ class ApplicationController < ActionController::Base
 
   def logout
     CASClient::Frameworks::Rails::Filter.logout(self)
+  end
+
+  def set_timezone
+    Time.zone = "America/Chicago"
   end
 end
