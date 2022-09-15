@@ -62,6 +62,7 @@ dt{clear:both;float:left;width:6em}
 dt:after{content:":"}
 dd{margin-left:6.5em}
 
+.left dl,.right dl{margin-bottom:0}
 dl.alphabet dt{width:1em;font-weight:700}
 dl.alphabet dt:after{content:""}
 dl.alphabet dd{margin-left:1em;margin-bottom:1.5em}
@@ -89,7 +90,7 @@ td{margin:0;padding:0}
 .alert-notice{color:#0A7}
 .info,.warning{padding:.5em 1em;border-radius:.25em}
 .info{background:#DFE}.warning{background:#FFA}
-.alert-error,.error,.field_with_errors,#error_explanation{color:#C23}
+.alert-error,.error,.field_with_errors,#error_explanation,.delete{color:#C23}
 .error,.field_with_errors{font-weight:700}
 div.field_with_errors{display:inline}
 .minor{color:#67696C;font-size:.85em}

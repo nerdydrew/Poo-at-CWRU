@@ -8,13 +8,6 @@
   <%= @restroom.name %>
 </h1>
 
-<% if @current_users_review.present? %>
-  <p>Would you like to <%= link_to 'update your review', edit_building_floor_restroom_review_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug, @current_users_review) %> or <%= link_to 'delete it', building_floor_restroom_review_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug, @current_users_review), method: :delete, data: { confirm: 'Are you sure you want to delete your review?' } %>?</p>
-<% else %>
-  <p>Would you like to <%= link_to "add a review", new_building_floor_restroom_review_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug) %>?</p>
-<% end %>
-
-
 <section class="left">
   <dl>
     <% [:cleanliness, :location, :wifi, :writing, :traffic, :toilet_paper, :overall].each do |field| %>
@@ -39,6 +32,16 @@
 <div style="clear:both"></div>
 
 <%= content_tag :p, "Special comments: " + @restroom.comments if @restroom.comments.present? %>
+
+<% if @case_id == @restroom.creator && @reviews.empty? %>
+  <p class="delete"><%= link_to 'Delete this restroom', building_floor_restroom_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug), method: :delete, data: { confirm: 'Are you sure you want to delete this restroom?' }, class: "delete" %></p>
+<% end %>
+
+<% if @current_users_review.present? %>
+  <p>Would you like to <%= link_to 'update your review', edit_building_floor_restroom_review_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug, @current_users_review) %> or <%= link_to 'delete it', building_floor_restroom_review_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug, @current_users_review), method: :delete, data: { confirm: 'Are you sure you want to delete your review?' } %>?</p>
+<% else %>
+  <p>Would you like to <%= link_to "add a review", new_building_floor_restroom_review_path(@restroom.building.slug, @restroom.floor.slug, @restroom.slug) %>?</p>
+<% end %>
 
 <% @reviews.each do |review| %>
   <blockquote<%= ' class="you"'.html_safe if review.user == @case_id %>>

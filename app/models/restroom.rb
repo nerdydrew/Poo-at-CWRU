@@ -15,7 +15,7 @@ class Restroom < ApplicationRecord
   belongs_to :building
   belongs_to :floor
 
-  has_many :review
+  has_many :review, :dependent => :destroy
 
   enum gender: {
     male: 'male',
