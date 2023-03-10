@@ -28,5 +28,7 @@ module Poo
 
     # https://sipsandbits.com/2018/04/30/using-database-native-enums-with-rails/
     config.active_record.schema_format = :sql
+
+    config.active_record.legacy_connection_handling = false
   end
 end
