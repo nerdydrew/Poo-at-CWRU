@@ -54,7 +54,7 @@
           <% if @logged_in %>
             <li><%= link_to "log out", controller: "application", action: "logout" %></li>
           <% else %>
-            <li><%= link_to "log in with Case ID", CASClient::Frameworks::Rails::Filter.login_url(controller) %></li>
+            <li><%= link_to "log in with Case ID", controller: "application", action: "login" %></li>
           <% end %>
 
           <li class="genders">

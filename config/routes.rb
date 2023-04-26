@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   controller :application do
-    get :logout, action: :logout
+    get 'login'
+    get 'logout'
     patch 'set_gender'
   end
 

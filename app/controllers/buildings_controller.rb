@@ -1,5 +1,4 @@
 class BuildingsController < ApplicationController
-  skip_before_action CASClient::Frameworks::Rails::GatewayFilter, only: :near_me
 
   def index
     @buildings_by_letter = Building.all

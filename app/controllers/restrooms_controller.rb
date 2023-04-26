@@ -1,5 +1,5 @@
 class RestroomsController < ApplicationController
-  before_action CASClient::Frameworks::Rails::Filter, except: :show
+  before_action :require_login, except: :show
   before_action :set_restroom, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:edit, :update, :destroy]
 

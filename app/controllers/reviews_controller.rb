@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :update, :destroy]
-  before_action CASClient::Frameworks::Rails::Filter
+  before_action :require_login
   before_action :authorize_user, except: [:new, :create]
 
   # GET /reviews/new

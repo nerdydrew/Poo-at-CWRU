@@ -1,16 +1,22 @@
 class ApplicationController < ActionController::Base
-  before_action CASClient::Frameworks::Rails::GatewayFilter, :except => [ :set_gender ]
   before_action :check_login
   before_action :set_timezone
 
   def check_login
-    @logged_in = session[:cas_user].present?
+    @logged_in = request.session['cas'].present? && request.session['cas']['user'].present?
 
     if @logged_in
-      @case_id = session[:cas_user]
+      @case_id = request.session['cas']['user']
     end
 
     @gender = cookies[:gender] || Restroom.genders[:any]
+  end
+
+  def require_login
+    if !@logged_in
+      # rack-cas redirects this to the CAS login page.
+      head :unauthorized
+    end
   end
 
   def set_gender
@@ -21,12 +27,18 @@ class ApplicationController < ActionController::Base
       cookies.delete :gender
     end
 
-    # Note that CAS's redirect messes with this if logged out, so exclude this method from it.
     redirect_back(fallback_location: root_path)
   end
 
+  # Manually build these because rack-cas doesn't seem to have them.
+  def login
+    destination = request.referer || "#{request.protocol}#{request.host_with_port}"
+    redirect_to "#{RackCAS.config.server_url}?service=#{destination}"
+  end
+
   def logout
-    CASClient::Frameworks::Rails::Filter.logout(self)
+    destination = request.referer || "#{request.protocol}#{request.host_with_port}"
+    redirect_to "#{RackCAS.config.server_url}/logoutayy?redirect=#{destination}"
   end
 
   def set_timezone
