@@ -71,8 +71,23 @@
 		elementToUpdate.innerHTML = "<p class=\"warning\">" + message + "</p>";
 	}
 
+	function geolocateIfVisible() {
+		if (document.visibilityState == "visible") {
+			getNearbyBuildings();
+			document.removeEventListener("visibilitychange", geolocateIfVisible);
+			return true;
+		}
+		return false;
+	}
+
 	<% if buildings.nil? %>
-		// On first load, request geolocation and start searching.
-		getNearbyBuildings();
+		// On first load, request geolocation and start searching. If the user has already given
+		// permission in Firefox but the page is opened in the // background, the geolocation
+		// request seems to be silently ignored, so wait until the page is visible.
+		document.addEventListener("DOMContentLoaded", function() {
+			if (!geolocateIfVisible()) {
+				document.addEventListener("visibilitychange", geolocateIfVisible);
+			}
+		});
 	<% end %>
 </script>
