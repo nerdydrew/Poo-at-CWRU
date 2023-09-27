@@ -80,12 +80,18 @@
 		return false;
 	}
 
+	function isInRightTimeZone() {
+		const tzName = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		return tzName == "America/New_York";
+	}
+
 	<% if buildings.nil? %>
-		// On first load, request geolocation and start searching. If the user has already given
-		// permission in Firefox but the page is opened in the // background, the geolocation
-		// request seems to be silently ignored, so wait until the page is visible.
+		// On first load, check if the user is in the same time zone as CWRU. If so, request
+		// geolocation and start searching. If the user has already given permission in Firefox
+		// but the page is opened in the background, the geolocation request seems to be silently
+		// ignored, so wait until the page is visible.
 		document.addEventListener("DOMContentLoaded", function() {
-			if (!geolocateIfVisible()) {
+			if (isInRightTimeZone() && !geolocateIfVisible()) {
 				document.addEventListener("visibilitychange", geolocateIfVisible);
 			}
 		});
