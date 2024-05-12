@@ -11,7 +11,9 @@ threads threads_count, threads_count
 #
 port        ENV.fetch("PORT") { 3000 }
 
-if Rails.env.development?
+rails_env = ENV.fetch("RAILS_ENV") { "development" }
+
+if rails_env == "developent"
   # Use a self-signed certificate in development. This allows testing CWRU's CAS server,
   # which requires requests to come from HTTPS.
   certificate_file = "config/certificate/certificate.pem"
@@ -52,8 +54,7 @@ if Rails.env.development?
 end
 
 # Specifies the `environment` that Puma will run in.
-#
-environment ENV.fetch("RAILS_ENV") { "development" }
+environment rails_env
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
