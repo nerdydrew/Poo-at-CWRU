@@ -13,7 +13,7 @@ port        ENV.fetch("PORT") { 3000 }
 
 rails_env = ENV.fetch("RAILS_ENV") { "development" }
 
-if rails_env == "developent"
+if rails_env == "development"
   # Use a self-signed certificate in development. This allows testing CWRU's CAS server,
   # which requires requests to come from HTTPS.
   certificate_file = "config/certificate/certificate.pem"
@@ -28,7 +28,7 @@ if rails_env == "developent"
 
     certificate = OpenSSL::X509::Certificate.new
     certificate.version = 2
-    certificate.serial = 0
+    certificate.serial = Random.rand(2**32)
     certificate.not_before = Time.now
     certificate.not_after = Time.now + 10.years
     certificate.public_key = key.public_key
