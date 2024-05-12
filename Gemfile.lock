@@ -119,6 +119,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
+    openssl (3.1.0)
     pg (1.5.3)
     public_suffix (5.0.3)
     puma (5.6.8)
@@ -202,6 +203,7 @@ DEPENDENCIES
   byebug
   geocoder
   lograge
+  openssl
   pg (~> 1.5.3)
   puma (~> 5.6)
   rack-cas

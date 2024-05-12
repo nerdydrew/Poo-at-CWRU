@@ -25,3 +25,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Self-signed certificate for testing in development.
+/config/certificate/
