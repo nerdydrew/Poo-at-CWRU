@@ -1,5 +1,3 @@
-require "openssl"
-
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers: a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
@@ -21,6 +19,8 @@ if Rails.env.development?
 
   # Generate a self-signed certificate if one does not already exist.
   unless File.file?(private_key_file) && File.file?(certificate_file)
+    require "openssl"
+
     key = OpenSSL::PKey::RSA.new 2048
     File.write private_key_file, key.private_to_pem
 
