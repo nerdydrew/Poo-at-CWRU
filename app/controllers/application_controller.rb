@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
 
   def logout
     destination = request.referer || "#{request.protocol}#{request.host_with_port}"
-    redirect_to "#{RackCAS.config.server_url}/logoutayy?redirect=#{destination}"
+    redirect_to "#{RackCAS.config.server_url}/logout?redirect=#{destination}"
   end
 
   def set_timezone
