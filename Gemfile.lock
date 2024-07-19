@@ -170,8 +170,8 @@ GEM
       ffi (~> 1.0)
     request_store (1.7.0)
       rack (>= 1.4)
-    rexml (3.2.7)
-      strscan (>= 3.0.9)
+    rexml (3.3.2)
+      strscan
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
