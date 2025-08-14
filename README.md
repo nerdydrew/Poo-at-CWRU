@@ -19,4 +19,5 @@ This is the source code for [pooatcwru.com](https://pooatcwru.com). I originally
 	* https://case.edu/lgbt/resources/transgender-resources/bathroom-inventory
 * Central Authentication Service (Single Sign-On)
 	* http://hacsoc.org/wiki/technical/cas.html
+	* https://case.edu/utech/help/knowledge-base/cwru-network-id-passphrase/cas-single-sign-cwru-kba
 	* https://web.archive.org/web/20121126051658/http://wiki.case.edu/Central_Authentication_Service
