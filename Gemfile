@@ -6,7 +6,7 @@ ruby '3.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.2.2.2'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 1.5.3'
+gem 'pg', '~> 1.6.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.6'
 # Use Uglifier as compressor for JavaScript assets
@@ -38,7 +38,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rack-cas'
-
 
 gem 'geocoder'
 

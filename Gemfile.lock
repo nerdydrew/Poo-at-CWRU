@@ -140,7 +140,8 @@ GEM
     nokogiri (1.18.9-x86_64-linux-gnu)
       racc (~> 1.4)
     openssl (3.2.0)
-    pg (1.5.6)
+    pg (1.6.1-arm64-darwin)
+    pg (1.6.1-x86_64-linux)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -248,7 +249,7 @@ DEPENDENCIES
   geocoder
   lograge
   openssl
-  pg (~> 1.5.3)
+  pg (~> 1.6.1)
   puma (~> 5.6)
   rack-cas
   rails (~> 7.2.2.2)

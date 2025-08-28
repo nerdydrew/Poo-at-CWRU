@@ -1,6 +1,12 @@
+\restrict k1RhDrqwZAfRZ4AlGF8ywoUcuo4FPHchJblfzaOelrDJ33Z75aY7sP745Paal2X
+
+-- Dumped from database version 17.6 (Homebrew)
+-- Dumped by pg_dump version 17.6 (Homebrew)
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
@@ -382,17 +388,18 @@ ALTER TABLE ONLY public.reviews
 -- PostgreSQL database dump complete
 --
 
+\unrestrict k1RhDrqwZAfRZ4AlGF8ywoUcuo4FPHchJblfzaOelrDJ33Z75aY7sP745Paal2X
+
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20181219021446'),
-('20181219172002'),
-('20181219174507'),
-('20181219212741'),
-('20181220162921'),
-('20181220192723'),
-('20181224033157'),
+('20220827161055'),
 ('20220704145907'),
-('20220827161055');
-
+('20181224033157'),
+('20181220192723'),
+('20181220162921'),
+('20181219212741'),
+('20181219174507'),
+('20181219172002'),
+('20181219021446');
 
