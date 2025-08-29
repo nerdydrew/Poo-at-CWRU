@@ -12,9 +12,11 @@ function setGenderCookie(selected) {
 }
 
 function getGenderFromCookie() {
-	const rawValue = document.cookie.split(";")
-		.find((item) => item.trim().startsWith(GENDER_COOKIE_NAME + "="))
-		?.split("=")[1];
+	let rawValue = document.cookie.split(";")
+		.find((item) => item.trim().startsWith(GENDER_COOKIE_NAME + "="));
+	if (rawValue) {
+		rawValue = rawValue.split("=")[1];
+	}
 	if (rawValue == MALE_VALUE || rawValue == FEMALE_VALUE) {
 		return rawValue;
 	} else {
