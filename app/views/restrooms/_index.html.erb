@@ -10,7 +10,7 @@
     </thead>
     <tbody>
       <% @restrooms.each do |restroom| %>
-        <tr>
+        <tr data-restroom-gender="<%= restroom.gender %>">
           <%= content_tag :td, link_to(restroom.floor.pretty_short_name, building_floor_restroom_path(@building, restroom.floor, restroom)) if @display_floors %>
           <td><%= link_to restroom.gender_html, building_floor_restroom_path(@building, restroom.floor, restroom) %></td>
           <td><%= link_to rating_stars_html(restroom.get_ratings(:overall)), building_floor_restroom_path(@building, restroom.floor, restroom) %></td>

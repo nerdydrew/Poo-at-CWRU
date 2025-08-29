@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   controller :application do
     get 'login'
     get 'logout'
-    patch 'set_gender'
   end
 
   get 'about' => "welcome#about"

@@ -19,17 +19,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_gender
-    gender = params.require(:gender)
-    if gender == Restroom.genders[:male] || gender == Restroom.genders[:female]
-      cookies[:gender] = gender
-    else
-      cookies.delete :gender
-    end
-
-    redirect_back(fallback_location: root_path)
-  end
-
   # Manually build these because rack-cas doesn't seem to have them.
   def login
     destination = request.referer || "#{request.protocol}#{request.host_with_port}"

@@ -36,8 +36,8 @@ a:hover{text-decoration:underline}
 p,section{margin:.809em 0;padding:0}
 
 header{background:#0A304E;color:#AAA}
-header a{color:#C6D4E3;text-decoration:none}
-header a:hover{color:#FFF;text-decoration:none}
+header a,header .genders label{color:#C6D4E3;text-decoration:none}
+header a:hover,header .genders label:hover{color:#FFF;text-decoration:none}
 header nav{margin:0 auto;max-width:35em;padding:1em;overflow:auto}
 header h1{margin:.75em 0 0;float:left;font-variant:small-caps}
 header img{height:1.5em;width:auto;padding-right:.5em;vertical-align:text-bottom}
@@ -46,9 +46,11 @@ header nav ul li{display:inline;margin:0 .5em}
 header nav ul li a{padding:0 .25em}
 
 header .genders{display:block}
-header .selected{background:#0A7;border-radius:1em;color:#FFF}
-header .male.selected{background:skyblue;color:#0A304E}
-header .female.selected{background:pink;color:#0A304E}
+header .genders label{cursor:pointer;padding:0 .25em}
+header .genders input[type="radio"]{display:none}
+header .genders input[type="radio"]:checked + label{background:#0A7;border-radius:1em;color:#FFF}
+header .genders input[type="radio"][value="male"]:checked + label{background:skyblue;color:#0A304E}
+header .genders input[type="radio"][value="female"]:checked + label{background:pink;color:#0A304E}
 
 h1.headline{text-align:center;font-size:2.5em;font-weight:700;line-height:1.2;color:#0A304E}
 h1.headline .subtitle{display:block;font-size:.78em;font-weight:400;color:#626262}
@@ -86,6 +88,9 @@ tbody tr:hover{background:#DDD}
 tbody a{display:block;padding:.125em .5em}
 tbody a:hover{text-decoration:none}
 td{margin:0;padding:0}
+
+body[data-only-gender="female"] tr[data-restroom-gender="male"],
+body[data-only-gender="male"] tr[data-restroom-gender="female"]{display:none}
 
 .alert-notice{color:#0A7}
 .info,.warning{padding:.5em 1em;border-radius:.25em}
